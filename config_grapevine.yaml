@@ -1,0 +1,17 @@
+species: "vitis_vinifera"
+proteome_path: null
+esm_model: "esm2_t33_650M_UR50D"
+batch_size: 4
+max_seq_len: 1022
+device: "auto"
+z_threshold_strict: 2.5
+z_threshold_moderate: 2.0
+z_threshold_lenient: 1.5
+percentile_strict: 99.5
+percentile_moderate: 99.0
+percentile_lenient: 97.0
+top_n_per_category: 50
+tsne_perplexity: 30
+tsne_n_sample: 5000
+random_seed: 42
+base_output_dir: "results/vitis_vinifera"

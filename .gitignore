@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.npz
+*.log
+
+# Do not track generated results; they can be regenerated
+results/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+

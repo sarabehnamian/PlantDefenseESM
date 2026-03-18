@@ -163,12 +163,24 @@ If you use this pipeline or derived figures in a publication, please cite this G
 > PlantDefenseESM – ESM-2–based pipeline for discovery and comparison of plant defense genes across species.  
 > GitHub: https://github.com/sarabehnamian/PlantDefenseESM
 
-You may also wish to cite:
-
-- Meta AI's ESM-2 protein language model.
-- Appropriate plant defense biology references describing the anchor genes and categories used here.
-
 License
 -------
 
-Specify your preferred license here (e.g. MIT, Apache-2.0, or a more restrictive academic license) and add a corresponding `LICENSE` file in the repository root.
+This project is released under the **MIT License**.  
+See the `LICENSE` file in the repository root for the full license text.
+
+Associated publication
+----------------------
+
+If you use this pipeline in published work, please cite:
+
+> **Behnamian, S., & Boyouk, N.**  
+> *Protein language model embeddings enable proteome-wide discovery of plant defense gene networks across species.*  
+> Globe Institute, University of Copenhagen, Øster Voldgade 5–7, 1350 Copenhagen K, Denmark (`sara.behnamian@sund.ku.dk`);  
+> Kempten University of Applied Sciences, Bahnhofstraße 61, 87435 Kempten, Germany (`naghmeh.boyouk@stud.hs-kempten.de`).
+>
+> **Abstract**  
+> Identifying the full complement of defense genes across plant proteomes remains challenging, particularly for species with incomplete functional annotations. Here we present PlantDefenseESM, a computational pipeline that leverages protein language model embeddings to discover defense gene networks at the proteome scale without requiring species-specific training or curated gene ontology databases. We generated 1,280-dimensional embeddings for all proteins in the proteomes of *Arabidopsis thaliana* (48,207 proteins), *Oryza sativa* (42,575), and *Vitis vinifera* (40,632) using ESM-2, a transformer-based model pre-trained on 250 million protein sequences. Defense candidates were identified by cosine similarity to category centroids defined by 33 experimentally validated anchor proteins spanning six functional classes: NBS-LRR resistance proteins, pathogenesis-related proteins, receptor-like kinases, defense signaling components, antimicrobial enzymes, and hypersensitive response regulators. A multi-tier selection strategy combining percentile-based and rank-based approaches identified 2,807, 2,442, and 2,354 moderate-tier candidates in *A. thaliana*, *O. sativa*, and *V. vinifera*, respectively. Independent validation against RefSeq functional annotations confirmed 3.35–4.22-fold enrichment of defense-annotated proteins among candidates (Fisher's exact test, p < 10⁻¹⁹⁹ in all species). Notably, 55–59% of candidates across all three species lacked any existing defense annotation, representing putative novel defense genes. Cross-species comparison revealed a conserved category hierarchy with lineage-specific expansions consistent with known biology, including expanded cell death machinery in grapevine and receptor-like kinase families in rice. The pipeline is species-agnostic, requires only a reference proteome as input, and provides a scalable framework for defense gene discovery in any sequenced plant genome.
+>
+> **Keywords**  
+> protein language model; ESM-2; plant innate immunity; defense gene discovery; proteome-wide classification; NBS-LRR; novel gene prediction; *Arabidopsis thaliana*; *Oryza sativa*; *Vitis vinifera*

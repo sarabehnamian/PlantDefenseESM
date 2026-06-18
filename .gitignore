@@ -12,3 +12,23 @@ Thumbs.db
 .vscode/
 .idea/
 
+
+# --- Large reference DB (NEVER commit; >100 MB GitHub limit) ---
+Pfam-A.hmm
+Pfam-A.hmm.gz
+*.hmm
+*.hmm.gz
+
+# --- UniProt caches ---
+_uniprot_domain_cache/
+_uniprot_fn_cache/
+_cache/
+
+# --- Revision analysis outputs (regenerable) ---
+r2_*.csv
+r3_*.csv
+
+# --- Working revision manuscript files (not for public repo) ---
+PlantDefenseESM_v*.docx
+Reviewers_v*.docx
+~$*.docx

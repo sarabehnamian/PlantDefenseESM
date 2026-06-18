@@ -1,0 +1,10 @@
+species,keyword_set,n_keywords,tier,n_candidates,n_with_keyword,candidate_rate,background_rate,fold_enrichment,odds_ratio,fisher_p
+arabidopsis_thaliana,all,47,strict,1443,669,0.4636,0.0971,4.77,9.21,8.88e-297
+arabidopsis_thaliana,all,47,moderate,2807,1150,0.4097,0.0971,4.22,8.23,0.00e+00
+arabidopsis_thaliana,all,47,lenient,7155,2121,0.2964,0.0971,3.05,6.33,0.00e+00
+arabidopsis_thaliana,specific,39,strict,1443,284,0.1968,0.0223,8.83,14.24,1.48e-186
+arabidopsis_thaliana,specific,39,moderate,2807,431,0.1535,0.0223,6.89,12.61,8.38e-249
+arabidopsis_thaliana,specific,39,lenient,7155,524,0.0732,0.0223,3.28,5.81,2.81e-156
+arabidopsis_thaliana,broad,8,strict,1443,611,0.4234,0.0838,5.05,9.28,8.39e-280
+arabidopsis_thaliana,broad,8,moderate,2807,1063,0.3787,0.0838,4.52,8.68,0.00e+00
+arabidopsis_thaliana,broad,8,lenient,7155,1966,0.2748,0.0838,3.28,7.11,0.00e+00

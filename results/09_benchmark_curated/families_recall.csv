@@ -1,0 +1,10 @@
+species,family,curated_total,present_in_proteome,recall_strict,recall_moderate,recall_lenient
+Arabidopsis thaliana,NLR (NB-ARC),254,254,0.543,0.874,0.925
+Arabidopsis thaliana,PR proteins,91,91,0.593,0.758,0.89
+Arabidopsis thaliana,RLK (LRR receptor kinase),246,246,0.537,0.728,0.947
+Oryza sativa Japonica Group,NLR (NB-ARC),1,1,0.0,1.0,1.0
+Oryza sativa Japonica Group,PR proteins,4,3,1.0,1.0,1.0
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),3,3,0.0,0.0,1.0
+Vitis vinifera,NLR (NB-ARC),0,0,,,
+Vitis vinifera,PR proteins,9,8,0.875,0.875,0.875
+Vitis vinifera,RLK (LRR receptor kinase),1,1,0.0,0.0,1.0

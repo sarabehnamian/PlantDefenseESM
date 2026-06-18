@@ -1,0 +1,19 @@
+species,category,n_candidates
+A. thaliana,NBS_LRR,525
+A. thaliana,PR_proteins,422
+A. thaliana,RLK_defense,512
+A. thaliana,antimicrobial,510
+A. thaliana,cell_death_HR,489
+A. thaliana,defense_signaling,349
+V. vinifera,NBS_LRR,408
+V. vinifera,PR_proteins,333
+V. vinifera,RLK_defense,420
+V. vinifera,antimicrobial,400
+V. vinifera,cell_death_HR,464
+V. vinifera,defense_signaling,329
+O. sativa,NBS_LRR,442
+O. sativa,PR_proteins,353
+O. sativa,RLK_defense,453
+O. sativa,antimicrobial,446
+O. sativa,cell_death_HR,431
+O. sativa,defense_signaling,317

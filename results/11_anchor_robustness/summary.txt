@@ -1,0 +1,24 @@
+======================================================================
+Anchor robustness: leave-one-out and leave-three-out
+======================================================================
+
+### Arabidopsis thaliana
+  anchors: 33 | baseline moderate candidates: 2,807
+  (pipeline moderate count for reference: 2,807)
+  LOAO: Jaccard mean 0.947 (min 0.782); retained mean 0.971 (min 0.866); Spearman mean 0.9926 (min 0.8793)
+  LOAO: most influential anchor = Q9LD45 (cell_death_HR), Jaccard 0.782, retained 0.884
+  Leave-3-out (50 runs): Jaccard mean 0.853 (min 0.675); retained mean 0.917 (min 0.812); Spearman mean 0.9803
+
+### Oryza sativa
+  anchors: 33 | baseline moderate candidates: 2,442
+  (pipeline moderate count for reference: 2,442)
+  LOAO: Jaccard mean 0.946 (min 0.795); retained mean 0.971 (min 0.875); Spearman mean 0.9938 (min 0.9019)
+  LOAO: most influential anchor = Q9LD45 (cell_death_HR), Jaccard 0.795, retained 0.896
+  Leave-3-out (50 runs): Jaccard mean 0.846 (min 0.669); retained mean 0.914 (min 0.803); Spearman mean 0.9749
+
+### Vitis vinifera
+  anchors: 33 | baseline moderate candidates: 2,354
+  (pipeline moderate count for reference: 2,354)
+  LOAO: Jaccard mean 0.947 (min 0.782); retained mean 0.971 (min 0.872); Spearman mean 0.9901 (min 0.8051)
+  LOAO: most influential anchor = Q9LD45 (cell_death_HR), Jaccard 0.782, retained 0.888
+  Leave-3-out (50 runs): Jaccard mean 0.857 (min 0.679); retained mean 0.920 (min 0.794); Spearman mean 0.9768

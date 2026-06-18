@@ -1,0 +1,51 @@
+======================================================================
+Family-specific recall vs curated InterPro defense sets
+======================================================================
+
+### Arabidopsis thaliana  (taxid 3702)
+    UniProt: (organism_id:3702) AND (xref:interpro-IPR002182)
+  NLR (NB-ARC): curated=254  present_in_proteome=254
+      recall@strict   = 0.543  (138/254)
+      recall@moderate = 0.874  (222/254)
+      recall@lenient  = 0.925  (235/254)
+    UniProt: (organism_id:3702) AND (xref:interpro-IPR000726 OR xref:interpro-IPR000490 OR xref:interpro-IPR001938 OR xref:interpro-IPR014044)
+  PR proteins: curated=91  present_in_proteome=91
+      recall@strict   = 0.593  (54/91)
+      recall@moderate = 0.758  (69/91)
+      recall@lenient  = 0.890  (81/91)
+    UniProt: (organism_id:3702) AND (xref:interpro-IPR001611 AND xref:interpro-IPR000719)
+  RLK (LRR receptor kinase): curated=246  present_in_proteome=246
+      recall@strict   = 0.537  (132/246)
+      recall@moderate = 0.728  (179/246)
+      recall@lenient  = 0.947  (233/246)
+
+### Oryza sativa Japonica Group  (taxid 39947)
+    UniProt: (organism_id:39947) AND (xref:interpro-IPR002182)
+  NLR (NB-ARC): curated=1  present_in_proteome=1
+      recall@strict   = 0.000  (0/1)
+      recall@moderate = 1.000  (1/1)
+      recall@lenient  = 1.000  (1/1)
+    UniProt: (organism_id:39947) AND (xref:interpro-IPR000726 OR xref:interpro-IPR000490 OR xref:interpro-IPR001938 OR xref:interpro-IPR014044)
+  PR proteins: curated=4  present_in_proteome=3
+      recall@strict   = 1.000  (3/3)
+      recall@moderate = 1.000  (3/3)
+      recall@lenient  = 1.000  (3/3)
+    UniProt: (organism_id:39947) AND (xref:interpro-IPR001611 AND xref:interpro-IPR000719)
+  RLK (LRR receptor kinase): curated=3  present_in_proteome=3
+      recall@strict   = 0.000  (0/3)
+      recall@moderate = 0.000  (0/3)
+      recall@lenient  = 1.000  (3/3)
+
+### Vitis vinifera  (taxid 29760)
+    UniProt: (organism_id:29760) AND (xref:interpro-IPR002182)
+  NLR (NB-ARC): curated=0  present_in_proteome=0
+    UniProt: (organism_id:29760) AND (xref:interpro-IPR000726 OR xref:interpro-IPR000490 OR xref:interpro-IPR001938 OR xref:interpro-IPR014044)
+  PR proteins: curated=9  present_in_proteome=8
+      recall@strict   = 0.875  (7/8)
+      recall@moderate = 0.875  (7/8)
+      recall@lenient  = 0.875  (7/8)
+    UniProt: (organism_id:29760) AND (xref:interpro-IPR001611 AND xref:interpro-IPR000719)
+  RLK (LRR receptor kinase): curated=1  present_in_proteome=1
+      recall@strict   = 0.000  (0/1)
+      recall@moderate = 0.000  (0/1)
+      recall@lenient  = 1.000  (1/1)

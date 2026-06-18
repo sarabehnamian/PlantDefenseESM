@@ -1,0 +1,39 @@
+======================================================================
+Benchmark vs curated GO defense set  (defense response + immune system)
+======================================================================
+
+### Arabidopsis thaliana  (taxid 3702)
+  querying UniProt: (organism_id:3702) AND (go:0006952 OR go:0002376)
+  curated GO proteins (RefSeq, unique): 2,318
+  mapped into proteome (positives)    : 2,318 / 48,207 (4.81% prevalence)
+  AUPRC = 0.150   (random baseline = prevalence = 0.048)
+  ROC-AUC = 0.641
+  tier       called     TP  precision   recall     F1   fold
+  strict       1443    278      0.193    0.120  0.148   4.01
+  moderate     2807    482      0.172    0.208  0.188   3.57
+  lenient      7155    812      0.113    0.350  0.171   2.36
+  PR curve -> pr_curve_arabidopsis_thaliana.png
+
+### Oryza sativa Japonica Group  (taxid 39947)
+  querying UniProt: (organism_id:39947) AND (go:0006952 OR go:0002376)
+  curated GO proteins (RefSeq, unique): 31
+  mapped into proteome (positives)    : 17 / 42,575 (0.04% prevalence)
+  AUPRC = 0.001   (random baseline = prevalence = 0.000)
+  ROC-AUC = 0.671
+  tier       called     TP  precision   recall     F1   fold
+  strict       1272      0      0.000    0.000  0.000   0.00
+  moderate     2442      1      0.000    0.059  0.001   1.03
+  lenient      6431      7      0.001    0.412  0.002   2.73
+  PR curve -> pr_curve_oryza_sativa.png
+
+### Vitis vinifera  (taxid 29760)
+  querying UniProt: (organism_id:29760) AND (go:0006952 OR go:0002376)
+  curated GO proteins (RefSeq, unique): 20
+  mapped into proteome (positives)    : 19 / 40,632 (0.05% prevalence)
+  AUPRC = 0.055   (random baseline = prevalence = 0.000)
+  ROC-AUC = 0.612
+  tier       called     TP  precision   recall     F1   fold
+  strict       1210      5      0.004    0.263  0.008   8.84
+  moderate     2354      5      0.002    0.263  0.004   4.54
+  lenient      6526      6      0.001    0.316  0.002   1.97
+  PR curve -> pr_curve_vitis_vinifera.png

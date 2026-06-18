@@ -1,0 +1,10 @@
+species,tier,n_called,n_curated_positives,TP,FP,FN,precision,recall,F1,fold_vs_prevalence
+Arabidopsis thaliana,strict,1443,2318,278,1165,2040,0.1927,0.1199,0.1478,4.007
+Arabidopsis thaliana,moderate,2807,2318,482,2325,1836,0.1717,0.2079,0.1881,3.571
+Arabidopsis thaliana,lenient,7155,2318,812,6343,1506,0.1135,0.3503,0.1714,2.36
+Oryza sativa Japonica Group,strict,1272,17,0,1272,17,0.0,0.0,0.0,0.0
+Oryza sativa Japonica Group,moderate,2442,17,1,2441,16,0.0004,0.0588,0.0008,1.026
+Oryza sativa Japonica Group,lenient,6431,17,7,6424,10,0.0011,0.4118,0.0022,2.726
+Vitis vinifera,strict,1210,19,5,1205,14,0.0041,0.2632,0.0081,8.837
+Vitis vinifera,moderate,2354,19,5,2349,14,0.0021,0.2632,0.0042,4.542
+Vitis vinifera,lenient,6526,19,6,6520,13,0.0009,0.3158,0.0018,1.966

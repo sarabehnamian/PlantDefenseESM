@@ -1,0 +1,5 @@
+set,curated_in_proteome,recovered_moderate,missed_false_negative,recall
+GO defense,2318,482,1836,0.2079
+NLR (NB-ARC),254,222,32,0.874
+PR proteins,91,69,22,0.7582
+RLK (LRR receptor kinase),246,179,67,0.7276

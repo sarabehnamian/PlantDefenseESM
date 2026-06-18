@@ -1,0 +1,4 @@
+species,taxid,n_proteome,n_curated_in_proteome,prevalence,AUPRC,ROC_AUC
+Arabidopsis thaliana,3702,48207,2318,0.0481,0.15,0.641
+Oryza sativa Japonica Group,39947,42575,17,0.0004,0.001,0.671
+Vitis vinifera,29760,40632,19,0.0005,0.055,0.612

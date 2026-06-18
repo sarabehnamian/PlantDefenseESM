@@ -1,0 +1,4 @@
+species,moderate_kwneg,kwneg_with_defense_domain,kwneg_domain_supported_frac,moderate_kwpos,kwpos_with_defense_domain,kwpos_domain_supported_frac
+Arabidopsis thaliana,1657,134,0.0809,1150,644,0.56
+Oryza sativa Japonica Group,1367,2,0.0015,1075,6,0.0056
+Vitis vinifera,1303,1,0.0008,1051,7,0.0067

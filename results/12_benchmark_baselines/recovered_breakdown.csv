@@ -1,0 +1,2 @@
+species,curated_positives,recovered_ESM2,recovered_BLAST,recovered_domain,ESM2_only_vs_standard,standard_only_vs_ESM2,both_ESM2_and_standard,recovered_by_neither
+Arabidopsis thaliana,2318,482,674,333,70,291,412,1545

@@ -1,0 +1,32 @@
+========================================================================
+Baseline comparison vs curated GO defense set
+ESM-2 (moderate)  |  BLAST-to-anchor (matched-N)  |  InterPro-domain  |  keyword
+========================================================================
+
+### Arabidopsis thaliana  (taxid 3702)
+  querying UniProt: (organism_id:3702) AND (go:0006952 OR go:0002376)
+  curated positives mapped: 2,318 / 48,207 (4.81%)
+  ESM-2 (moderate)  : N=  2807  P=0.172  R=0.208  F1=0.188  fold=3.57  AUPRC=0.150
+  proteome FASTA: results\arabidopsis_thaliana\00_download_proteome\proteome.fasta
+  anchor   FASTA: results\arabidopsis_thaliana\01_fetch_anchors\anchors.fasta
+  [ALIGN] 33 anchors loaded; aligning seeded proteins (BLOSUM62 local, k=5)
+    aligned 2,000 seeded proteins (16,269 scanned) ...
+    aligned 4,000 seeded proteins (30,327 scanned) ...
+  [ALIGN] scanned 48,207 proteins; aligned 5,885 (rest scored 0 = no seed match)
+  alignment-to-anchor (SW): N=  2807  P=0.240  R=0.291  F1=0.263  fold=4.99  AUPRC=0.180
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR002182)
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR000726 OR xref:interpro-IPR000490 OR xref:interpro-IPR001938 OR xref:interpro-IPR014044)
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR001611 AND xref:interpro-IPR000719)
+  InterPro-domain   : N=   591  P=0.564  R=0.144  F1=0.229  fold=11.72
+  RefSeq-keyword    : N=  4682  P=0.181  R=0.365  F1=0.242  fold=3.76
+  recovered curated positives: ESM-2=482, standard(domain|BLAST)=703; ESM-2-only=70, standard-only=291, both=412, neither=1545
+
+### Oryza sativa Japonica Group  (taxid 39947)
+  querying UniProt: (organism_id:39947) AND (go:0006952 OR go:0002376)
+  curated positives mapped: 17 / 42,575 (0.04%)
+  [SKIP baselines] fewer than 50 curated positives (annotation gap); baselines not meaningful here.
+
+### Vitis vinifera  (taxid 29760)
+  querying UniProt: (organism_id:29760) AND (go:0006952 OR go:0002376)
+  curated positives mapped: 19 / 40,632 (0.05%)
+  [SKIP baselines] fewer than 50 curated positives (annotation gap); baselines not meaningful here.

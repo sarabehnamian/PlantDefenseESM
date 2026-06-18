@@ -1,0 +1,18 @@
+2026-03-07 12:41:59,728 | INFO     | =================================================================
+2026-03-07 12:41:59,728 | INFO     | STEP 07  - Cross-species comparison
+2026-03-07 12:41:59,728 | INFO     | =================================================================
+2026-03-07 12:41:59,728 | INFO     | 
+A. thaliana: results\arabidopsis_thaliana
+2026-03-07 12:41:59,735 | INFO     | 
+V. vinifera: results\vitis_vinifera
+2026-03-07 12:41:59,743 | INFO     | 
+O. sativa: results\oryza_sativa
+2026-03-07 12:41:59,750 | INFO     | 
+    species  n_proteins  strict_candidates  strict_pct  moderate_candidates  moderate_pct  lenient_candidates  lenient_pct  known_defense  novel_candidates
+A. thaliana       48207               1443        2.99                 2807          5.82                7155        14.84           1150              1657
+V. vinifera       40632               1210        2.98                 2354          5.79                6526        16.06           1051              1303
+  O. sativa       42575               1272        2.99                 2442          5.74                6431        15.11           1075              1367
+2026-03-07 12:42:00,193 | INFO     |   OK fig_species_comparison.png
+2026-03-07 12:42:00,193 | INFO     | 
+Output -> results\07_cross_species_compare
+2026-03-07 12:42:00,193 | INFO     | Done OK

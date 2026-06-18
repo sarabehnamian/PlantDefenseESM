@@ -1,0 +1,10 @@
+species,keyword_set,n_keywords,tier,n_candidates,n_with_keyword,candidate_rate,background_rate,fold_enrichment,odds_ratio,fisher_p
+oryza_sativa,all,47,strict,1272,579,0.4552,0.1136,4.01,7.27,6.84e-215
+oryza_sativa,all,47,moderate,2442,1075,0.4402,0.1136,3.87,7.6,0.00e+00
+oryza_sativa,all,47,lenient,6431,2521,0.392,0.1136,3.45,9.41,0.00e+00
+oryza_sativa,specific,39,strict,1272,159,0.125,0.0209,5.99,7.94,4.46e-76
+oryza_sativa,specific,39,moderate,2442,192,0.0786,0.0209,3.77,4.83,7.81e-59
+oryza_sativa,specific,39,lenient,6431,356,0.0554,0.0209,2.65,3.92,2.15e-74
+oryza_sativa,broad,8,strict,1272,535,0.4206,0.0988,4.26,7.44,1.08e-207
+oryza_sativa,broad,8,moderate,2442,1017,0.4165,0.0988,4.22,8.27,0.00e+00
+oryza_sativa,broad,8,lenient,6431,2368,0.3682,0.0988,3.73,10.88,0.00e+00

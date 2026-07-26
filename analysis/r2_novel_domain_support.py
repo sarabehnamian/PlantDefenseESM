@@ -12,19 +12,19 @@ re-embedding. Reuses the same InterPro retrieval approach as
 
 Rationale
 ---------
-A moderate-tier candidate is called "novel" when its RefSeq DESCRIPTION
+A moderate-tier candidate is called keyword-negative when its RefSeq DESCRIPTION
 carries none of the defense keywords. That is a statement about the text
 annotation, not about the protein. As an independent line of evidence, we
 ask how many of these keyword-negative candidates nonetheless carry a
 recognized defense-related INTERPRO DOMAIN. Domain assignments come from
 InterPro/Pfam signatures and are independent of (a) the ESM-2 embeddings
 used for prediction and (b) the RefSeq description keywords used to define
-novelty. A keyword-negative candidate that still carries an NB-ARC, LRR,
+annotation support. A keyword-negative candidate that still carries an NB-ARC, LRR,
 kinase, chitinase, etc. domain is supported by orthogonal evidence rather
 than being a threshold artefact.
 
 For each species it reports, at the moderate tier:
-    - n keyword-negative candidates ("novel")
+    - n keyword-negative candidates
     - how many carry >=1 defense-related InterPro domain (orthogonal support)
     - the same for keyword-positive candidates (sanity reference)
     - a per-domain breakdown among the keyword-negative set

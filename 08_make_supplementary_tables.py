@@ -15,7 +15,7 @@ for every predicted candidate:
     - confidence (max Z-score, max percentile, stringency tier)
     - per-category Z-scores
     - keyword-validation status and the matched keyword evidence
-    - novelty class
+    - annotation_support class
     - RefSeq functional description
 
 Run from the project root (the folder that contains `results/`):
@@ -86,7 +86,7 @@ def build_species_table(species_dir: str) -> pd.DataFrame:
         {True: "annotation-supported", False: "no defense keyword"}
     )
     out["matched_keywords"] = cand.get("keyword_hits").fillna("")
-    out["novelty_class"] = cand.get("novelty")
+    out["annotation_support_class"] = cand.get("annotation_support")
     out["refseq_description"] = cand.get("description").fillna("")
     # append per-category z-scores
     for c in z_cat_cols:
@@ -104,7 +104,7 @@ DICTIONARY = [
     ("confidence_percentile", "Maximum per-category percentile rank (0-100)."),
     ("validation_status", "'annotation-supported' if the RefSeq description contains >=1 defense keyword, else 'no defense keyword'."),
     ("matched_keywords", "Defense keyword(s) found in the RefSeq description (evidence; '|'-separated)."),
-    ("novelty_class", "known_defense (candidate WITH a defense keyword) or novel_candidate (candidate WITHOUT any defense keyword)."),
+    ("annotation_support_class", "annotation_supported_candidate (candidate WITH a defense keyword) or candidate_without_defense_keyword (candidate WITHOUT any defense keyword)."),
     ("refseq_description", "Full RefSeq functional annotation string."),
     ("z_<category>", "Z-score of this protein against each of the six defense category centroids."),
 ]
@@ -127,10 +127,10 @@ def main():
 
         n = len(tbl)
         by_tier = tbl["tier"].value_counts().to_dict()
-        n_novel = int((tbl["novelty_class"] == "novel_candidate").sum())
+        n_novel = int((tbl["annotation_support_class"] == "candidate_without_defense_keyword").sum())
         print(f"  rows: {n:,}")
         print(f"  by tier: {by_tier}")
-        print(f"  novel_candidate: {n_novel:,}")
+        print(f"  candidate_without_defense_keyword: {n_novel:,}")
         print(f"  columns: {list(tbl.columns)}")
         print("  preview (top 3 rows):")
         with pd.option_context("display.max_colwidth", 45, "display.width", 200):
@@ -141,7 +141,7 @@ def main():
             "Moderate-tier candidates": n,
             "Strict": by_tier.get("strict", 0),
             "Moderate only": by_tier.get("moderate", 0),
-            "Novel candidates (no keyword)": n_novel,
+            "Candidates without a defense keyword": n_novel,
             "Annotation-supported": int((tbl["validation_status"] == "annotation-supported").sum()),
         })
 

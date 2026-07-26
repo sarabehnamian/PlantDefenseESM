@@ -4,13 +4,13 @@
 ========================
 Produce clean, publication-ready candidate gene lists from the validated
 results: one table per threshold level, plus a curated high-confidence
-novel candidate list.
+keyword-negative candidate list.
 
 Outputs -> results/05_extract_candidates/
     candidates_strict.csv     - Z >= 2.5
     candidates_moderate.csv   - Z >= 2.0
     candidates_lenient.csv    - Z >= 1.5
-    novel_candidates.csv      - moderate-threshold, NO defense keyword
+    keyword_negative_candidates.csv      - moderate-threshold, NO defense keyword
     candidate_sequences.fasta - FASTA of moderate-threshold candidates
     summary.yaml
 """
@@ -44,7 +44,7 @@ def main():
     # Columns to export
     keep_cols = [
         "z_max", "best_category", "has_defense_keyword",
-        "keyword_hits", "novelty", "description",
+        "keyword_hits", "annotation_support", "description",
     ]
     # Add per-category z-scores
     z_cols = [c for c in df.columns if c.startswith("z_") and c != "z_max"]
@@ -60,12 +60,12 @@ def main():
         summary[label] = int(len(cands))
         logger.info(f"  {label:8s}: {len(cands):>5,} candidates -> {out_path.name}")
 
-    # ── Novel candidates (moderate, no keyword) ──────────────────────────
+    # ── Keyword-negative candidates (moderate, no keyword) ──────────────────────────
     novel = df[(df["defense_moderate"]) & (~df["has_defense_keyword"])].copy()
     novel = novel.sort_values("z_max", ascending=False)
-    novel[export_cols].to_csv(out / "novel_candidates.csv")
-    summary["novel_moderate"] = int(len(novel))
-    logger.info(f"\n  Novel candidates (moderate, no keyword): {len(novel):,}")
+    novel[export_cols].to_csv(out / "keyword_negative_candidates.csv")
+    summary["keyword_negative_moderate"] = int(len(novel))
+    logger.info(f"\n  Keyword-negative candidates (moderate, no keyword): {len(novel):,}")
 
     # ── FASTA of moderate candidates ─────────────────────────────────────
     proteome_fasta = (

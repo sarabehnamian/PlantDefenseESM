@@ -102,9 +102,9 @@ def main():
             row[f"{thr}_candidates"] = t_info.get("n_candidates", "?")
             row[f"{thr}_pct"] = t_info.get("pct", "?")
 
-        novelty = val.get("novelty_moderate", {})
-        row["known_defense"] = novelty.get("known_defense", "?")
-        row["novel_candidates"] = novelty.get("novel_candidate", "?")
+        annotation_support = val.get("annotation_support_moderate", {})
+        row["annotation_supported_candidate"] = annotation_support.get("annotation_supported_candidate", "?")
+        row["keyword_negative_candidates"] = annotation_support.get("candidate_without_defense_keyword", "?")
         rows.append(row)
 
         # Category breakdown

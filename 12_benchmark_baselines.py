@@ -22,7 +22,7 @@ Methods compared (all evaluated against the curated GO defense set used in
                                defense keyword (the has_defense_keyword flag).
 
 Also reports a RECOVERED-BY breakdown among the curated positives:
-how many known defense genes are recovered by ESM-2, by BLAST, by domains,
+how many curated defense genes are recovered by ESM-2, by BLAST, by domains,
 and by which combinations (the "ESM-2 only / standard only / both" picture).
 
 Focus species: Arabidopsis thaliana (the only species with a sufficiently

@@ -24,8 +24,8 @@ enrichment and one-sided Fisher's exact p-value.  If the enrichment holds
 (or strengthens) under SPECIFIC-only keywords, the signal is not an
 artefact of broad terms.
 
-It also recomputes the moderate-tier novelty counts under SPECIFIC-only
-keywords, since "novel" = candidate without ANY defense keyword and the
+It also recomputes the moderate-tier annotation_support counts under SPECIFIC-only
+keywords, since keyword-negative = candidate without ANY defense keyword and the
 broad terms make that definition more conservative.
 
 Run from the project root (the folder that contains `results/`):
@@ -37,7 +37,7 @@ Outputs (written next to this script):
     r2_keyword_groups.csv                 - the broad/specific keyword table
     r2_keyword_enrichment_<species>.csv   - enrichment per keyword set x tier
     r2_keyword_specificity_summary.csv    - one combined tidy table
-    r2_keyword_novelty_<species>.csv      - novelty counts: ALL vs SPECIFIC
+    r2_keyword_annotation_support_<species>.csv      - annotation_support counts: ALL vs SPECIFIC
 """
 
 import sys
@@ -133,8 +133,8 @@ def enrichment_rows(df: pd.DataFrame, species: str, set_name: str,
     return rows
 
 
-def novelty_rows(df: pd.DataFrame, species: str) -> list:
-    """Moderate-tier novelty counts under ALL vs SPECIFIC-only keywords."""
+def annotation_support_rows(df: pd.DataFrame, species: str) -> list:
+    """Moderate-tier annotation_support counts under ALL vs SPECIFIC-only keywords."""
     out = []
     mod = df["defense_moderate"].astype(bool) if "defense_moderate" in df.columns \
         else pd.Series(False, index=df.index)
@@ -148,9 +148,9 @@ def novelty_rows(df: pd.DataFrame, species: str) -> list:
             "species": species,
             "keyword_set": set_name,
             "moderate_candidates": n_mod,
-            "known_defense": known,
-            "novel_candidate": novel,
-            "novel_fraction": round(novel / n_mod, 4) if n_mod else 0.0,
+            "annotation_supported_candidate": known,
+            "candidate_without_defense_keyword": novel,
+            "keyword_negative_fraction": round(novel / n_mod, 4) if n_mod else 0.0,
         })
     return out
 
@@ -172,8 +172,8 @@ def analyse_species(result_dir: Path) -> tuple:
     out = Path(__file__).resolve().parent / f"r2_keyword_enrichment_{species}.csv"
     enr_df.to_csv(out, index=False)
 
-    nov_df = pd.DataFrame(novelty_rows(df, species))
-    nov_out = Path(__file__).resolve().parent / f"r2_keyword_novelty_{species}.csv"
+    nov_df = pd.DataFrame(annotation_support_rows(df, species))
+    nov_out = Path(__file__).resolve().parent / f"r2_keyword_annotation_support_{species}.csv"
     nov_df.to_csv(nov_out, index=False)
 
     # Compact console view
@@ -183,9 +183,9 @@ def analyse_species(result_dir: Path) -> tuple:
         ["keyword_set", "n_keywords", "background_rate",
          "candidate_rate", "fold_enrichment", "fisher_p"]]
     print(sub.to_string(index=False))
-    print("\n  Moderate-tier novelty (ALL vs SPECIFIC keywords):")
-    print(nov_df[["keyword_set", "known_defense", "novel_candidate",
-                  "novel_fraction"]].to_string(index=False))
+    print("\n  Moderate-tier annotation_support (ALL vs SPECIFIC keywords):")
+    print(nov_df[["keyword_set", "annotation_supported_candidate", "candidate_without_defense_keyword",
+                  "keyword_negative_fraction"]].to_string(index=False))
 
     return enr_df, nov_df
 
@@ -217,7 +217,7 @@ def main():
         combined.to_csv(out, index=False)
         print(f"\nWrote combined summary -> {out}")
         print("Per-species tables -> r2_keyword_enrichment_<species>.csv, "
-              "r2_keyword_novelty_<species>.csv")
+              "r2_keyword_annotation_support_<species>.csv")
 
 
 if __name__ == "__main__":

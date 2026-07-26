@@ -12,10 +12,10 @@ SEQUENCES DIRECTLY against the Pfam-A HMM library with HMMER (via pyhmmer,
 pip-installable, no system install, no GPU). Domain assignments are
 therefore measured on our own RefSeq proteins and are independent of
 (a) the ESM-2 embeddings used for prediction and (b) the RefSeq
-description keywords used to define novelty.
+description keywords used to define keyword-negative status.
 
 For each species, among the MODERATE-tier candidates it reports:
-    - keyword-negative ("novel") candidates carrying >=1 defense-related
+    - keyword-negative candidates carrying >=1 defense-related
       Pfam domain (orthogonal support)
     - the same for keyword-positive candidates (reference)
     - a per-domain breakdown for the keyword-negative set

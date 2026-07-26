@@ -3,7 +3,7 @@
 09_benchmark_curated.py
 =======================
 Benchmark the ESM-2 defense predictions against an INDEPENDENT, curated
-positive set of known defense genes, and report precision / recall / F1,
+positive set of curated defense genes, and report precision / recall / F1,
 AUPRC, ROC-AUC, and a precision-recall curve.  (Reviewer 1 Comment 3;
 also addresses Reviewer 2 and Reviewer 3 benchmarking requests.)
 
@@ -22,7 +22,7 @@ Curated defense-gene sets are known to be incomplete (this is the premise
 of the study).  Precision against such a set is therefore a CONSERVATIVE
 LOWER BOUND: many predicted candidates without a GO defense annotation may
 still be genuine, currently-unannotated defense genes.  Recall (fraction of
-KNOWN defense genes recovered) is the cleaner, directly interpretable metric.
+CURATED defense genes recovered) is the cleaner, directly interpretable metric.
 
 Run from the project root:
     python 09_benchmark_curated.py
@@ -191,7 +191,7 @@ def main():
                 m = df[col].values.astype(bool)
                 _, _, _, p, r, _ = metrics_at(m, y_true)
                 plt.scatter([r], [p], marker=mk, s=60, zorder=5, label=tier)
-        plt.xlabel("Recall (known defense genes recovered)")
+        plt.xlabel("Recall (curated defense genes recovered)")
         plt.ylabel("Precision")
         plt.title(f"{display}: ESM-2 vs curated GO defense set")
         plt.legend(fontsize=7, loc="upper right")

@@ -11,7 +11,7 @@ Each figure has three side-by-side panels (A / B / C), one per species.
 Outputs -> results/06b_multispecies_figures/
     fig1_zscore_distributions.png    - A/B/C: Z-score histograms
     fig2_category_heatmaps.png       - A/B/C: top-50 heatmaps
-    fig3_novelty_and_breakdown.png   - A/B/C top row: novelty bars
+    fig3_annotation_support_and_breakdown.png   - A/B/C top row: annotation-support bars
                                        D/E/F bottom row: category breakdown
     fig4_tsne_embedding_space.png    - A/B/C: t-SNE projections
 
@@ -87,8 +87,8 @@ plt.rcParams.update({
 })
 
 PALETTE = {
-    "known_defense":  "#2196F3",
-    "novel_candidate": "#FF5722",
+    "annotation_supported_candidate":  "#2196F3",
+    "candidate_without_defense_keyword": "#FF5722",
     "keyword_only":   "#FFC107",
 }
 
@@ -222,10 +222,10 @@ def make_fig2(dfs, species, top_n=50):
     logger.info(f"  Saved {path.name}")
 
 
-# ── Figure 3 — Novelty bars (top) + Category breakdown (bottom) ───────────────
+# ── Figure 3 — Annotation-support bars (top) + Category breakdown (bottom) ───────────────
 
 def make_fig3(dfs, species):
-    logger.info("Building Fig 3: Novelty and category breakdown ...")
+    logger.info("Building Fig 3: Annotation-support and category breakdown ...")
     fig = plt.figure(figsize=(24, 12))
     gs  = gridspec.GridSpec(2, 3, figure=fig, hspace=0.55, wspace=0.30,
                             top=0.88, bottom=0.08)
@@ -240,10 +240,10 @@ def make_fig3(dfs, species):
 
     for col_i, (sp, df) in enumerate(zip(species, dfs)):
 
-        # ── top row: novelty bar chart ──
+        # ── top row: annotation_support bar chart ──
         ax_top = fig.add_subplot(gs[0, col_i])
-        counts = df["novelty"].value_counts()
-        plot_cats = [c for c in ["known_defense", "novel_candidate", "keyword_only"]
+        counts = df["annotation_support"].value_counts()
+        plot_cats = [c for c in ["annotation_supported_candidate", "candidate_without_defense_keyword", "keyword_only"]
                      if c in counts.index]
         vals   = [counts.get(c, 0) for c in plot_cats]
         colors = [PALETTE[c] for c in plot_cats]
@@ -305,7 +305,7 @@ def make_fig3(dfs, species):
     fig.suptitle("Defense candidate classification across species",
                  fontsize=22, y=1.02)
 
-    path = OUT_DIR / "fig3_novelty_and_breakdown.png"
+    path = OUT_DIR / "fig3_annotation_support_and_breakdown.png"
     fig.savefig(path)
     plt.close(fig)
     logger.info(f"  Saved {path.name}")

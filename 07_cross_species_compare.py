@@ -22,6 +22,7 @@ Outputs -> results/07_cross_species_compare/
 import argparse
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
@@ -32,7 +33,79 @@ try:
 except ImportError:
     from yaml import SafeLoader as YAMLLoader
 
+import logging
+
 from shared import get_logger
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Publication style — BMC Bioinformatics
+# ══════════════════════════════════════════════════════════════════════════════
+# 85 mm half-page / 170 mm full-page width, max 225 mm high, ~300 dpi at final
+# size, legible at the 600 px web width, lines above 0.25 pt, fonts embedded,
+# Arial or Helvetica in the graphic, and no title inside the image (BMC wants
+# figure titles and legends in the manuscript). The figure is drawn AT FINAL
+# SIZE, so the point sizes below are the ones that appear in print.
+
+MM = 1 / 25.4
+FULL_W = 170 * MM          # 6.69 in
+HALF_W = 85 * MM           # 3.35 in
+
+SAVE_PDF = False           # True also writes the vector PDF BMC prefers
+
+
+def _pub_font():
+    from matplotlib import font_manager
+    have = {f.name for f in font_manager.fontManager.ttflist}
+    for name in ("Arial", "Helvetica", "Liberation Sans", "DejaVu Sans"):
+        if name in have:
+            return name
+    return "sans-serif"
+
+
+PUB_RC = {
+    "font.family": "sans-serif",
+    "font.sans-serif": [_pub_font()],
+    "font.size": 8,
+    "axes.labelsize": 8,
+    "axes.titlesize": 8.5,
+    "xtick.labelsize": 7.5,
+    "ytick.labelsize": 7.5,
+    "legend.fontsize": 7,
+    "axes.linewidth": 0.6,
+    "xtick.major.width": 0.6,
+    "ytick.major.width": 0.6,
+    "xtick.major.size": 2.5,
+    "ytick.major.size": 2.5,
+    "lines.linewidth": 0.9,
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+    "figure.dpi": 600,
+    "savefig.dpi": 600,
+    "savefig.bbox": "tight",
+    "savefig.pad_inches": 0.02,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42,
+}
+
+# Same order as the other figures, so the categories line up across the paper.
+CAT_ORDER = ["NBS_LRR", "PR_proteins", "RLK_defense",
+             "defense_signaling", "antimicrobial", "cell_death_HR"]
+
+CAT_LABELS_2LINE = {
+    "NBS_LRR": "NBS-LRR",
+    "PR_proteins": "PR\nproteins",
+    "RLK_defense": "RLK\ndefense",
+    "defense_signaling": "Defense\nsignalling",
+    "antimicrobial": "Anti-\nmicrobial",
+    "cell_death_HR": "Cell death\n/ HR",
+}
+
+
+def _quiet_fonttools():
+    for name in ("fontTools", "fontTools.subset", "fontTools.ttLib"):
+        logging.getLogger(name).setLevel(logging.WARNING)
+
 
 
 def load_run_summary(run_dir: Path) -> dict:
@@ -125,12 +198,9 @@ def main():
     if not cat_df.empty:
         cat_df.to_csv(out / "category_comparison.csv", index=False)
 
-        # ── Figure ───────────────────────────────────────────────────────
-        # Set Times New Roman font
-        plt.rcParams["font.family"] = "Times New Roman"
-        plt.rcParams["font.size"] = 11
-        
-        # Map labels to scientific names (handles both short and full labels)
+        # ── Figure (manuscript Figure 7) ─────────────────────────────
+        _quiet_fonttools()
+
         scientific_names = {
             "Arabidopsis": "Arabidopsis thaliana",
             "Rice": "Oryza sativa",
@@ -142,63 +212,72 @@ def main():
             "Oryza sativa": "Oryza sativa",
             "Vitis vinifera": "Vitis vinifera",
         }
-        # Species-specific colors (vibrant publication palette)
         species_colors = {
-            "Arabidopsis thaliana": "#1B9E77",    # vivid teal-green
-            "Oryza sativa": "#D95F02",            # bright orange
-            "Vitis vinifera": "#7570B3",          # rich purple
+            "Arabidopsis thaliana": "#1B9E77",
+            "Oryza sativa": "#D95F02",
+            "Vitis vinifera": "#7570B3",
         }
-        
-        # Rename species to scientific names in dataframe
+
         cat_df_plot = cat_df.copy()
         cat_df_plot["species"] = cat_df_plot["species"].map(
-            lambda x: scientific_names.get(x, x)
-        )
-        
-        pivot = cat_df_plot.pivot_table(
-            index="category", columns="species",
-            values="n_candidates", fill_value=0,
-        )
-        
-        # Reorder columns and get colors in matching order
-        col_order = [scientific_names.get(lbl, lbl) for lbl in args.labels 
+            lambda x: scientific_names.get(x, x))
+
+        pivot = cat_df_plot.pivot_table(index="category", columns="species",
+                                        values="n_candidates", fill_value=0)
+
+        col_order = [scientific_names.get(lbl, lbl) for lbl in args.labels
                      if scientific_names.get(lbl, lbl) in pivot.columns]
         pivot = pivot[col_order]
         colors = [species_colors.get(sp, "#666666") for sp in col_order]
-        
-        # Format category names for display
-        category_labels = {
-            "NBS_LRR": "NBS-LRR",
-            "PR_proteins": "PR proteins",
-            "RLK_defense": "RLK defense",
-            "antimicrobial": "antimicrobial",
-            "cell_death_HR": "cell death/HR",
-            "defense_signaling": "defense signaling",
-        }
-        pivot.index = [category_labels.get(cat, cat) for cat in pivot.index]
-        
-        fig, ax = plt.subplots(figsize=(10, 6))
-        pivot.plot(kind="bar", ax=ax, color=colors, edgecolor="white", linewidth=0.5)
-        
-        # Publication-quality font sizes (consistent for x and y labels)
-        label_fontsize = 12
-        title_fontsize = 14
-        tick_fontsize = 10
-        
-        ax.set_xlabel("Category", fontsize=label_fontsize)
-        ax.set_ylabel("Number of candidates (moderate)", fontsize=label_fontsize)
-        ax.set_title("Defense candidates by category across species", fontsize=title_fontsize)
-        ax.tick_params(axis='both', labelsize=tick_fontsize)
-        
-        italic_labels = ["$\\it{" + sp.replace(" ", "\\ ") + "}$" for sp in col_order]
-        ax.legend(title="Species", labels=italic_labels, 
-                  loc="upper left", bbox_to_anchor=(1.02, 1), frameon=True,
-                  fontsize=tick_fontsize, title_fontsize=label_fontsize)
-        plt.xticks(rotation=30, ha="right")
-        fig.savefig(out / "fig_species_comparison.png",
-                    dpi=350, bbox_inches="tight")
-        plt.close(fig)
-        logger.info(f"  OK fig_species_comparison.png")
+
+        row_order = [c for c in CAT_ORDER if c in pivot.index]
+        row_order += [c for c in pivot.index if c not in row_order]
+        pivot = pivot.loc[row_order]
+        labels = [CAT_LABELS_2LINE.get(c, c) for c in pivot.index]
+
+        with plt.rc_context(PUB_RC):
+            fig, ax = plt.subplots(figsize=(FULL_W, 2.7))
+
+            n_cat, n_sp = pivot.shape
+            x = np.arange(n_cat)
+            width = 0.8 / n_sp
+            vmax = float(pivot.values.max())
+
+            for j, sp in enumerate(col_order):
+                offs = (j - (n_sp - 1) / 2) * width
+                vals = pivot[sp].values
+                ax.bar(x + offs, vals, width=width * 0.92, color=colors[j],
+                       edgecolor="white", linewidth=0.4,
+                       label="$\\it{" + sp.replace(" ", "\\ ") + "}$")
+                for xi, v in zip(x + offs, vals):
+                    ax.text(xi, v + vmax * 0.02, f"{int(v):,}", ha="center",
+                            va="bottom", fontsize=5.8, rotation=90)
+
+            ax.set_xticks(x)
+            ax.set_xticklabels(labels, linespacing=1.15)
+            ax.set_ylim(0, vmax * 1.30)
+            ax.set_ylabel("Moderate-tier candidates", labelpad=2)
+            ax.yaxis.set_major_locator(plt.MaxNLocator(5))
+            ax.yaxis.set_major_formatter(
+                plt.FuncFormatter(lambda v, _: f"{v:,.0f}"))
+            ax.tick_params(pad=1.5)
+            # No title inside the graphic: BMC wants it in the manuscript.
+            ax.legend(loc="upper right", frameon=False, handlelength=1.1,
+                      handletextpad=0.5, borderpad=0.1, labelspacing=0.3,
+                      ncol=3, columnspacing=1.0)
+
+            fig.tight_layout()
+            png = out / "fig_species_comparison.png"
+            fig.savefig(png)
+            written = [png.name]
+            if SAVE_PDF:
+                pdf = out / "fig_species_comparison.pdf"
+                fig.savefig(pdf)
+                written.append(pdf.name)
+            plt.close(fig)
+
+        logger.info(f"  Saved {' + '.join(written)}  "
+                    f"({FULL_W * 25.4:.0f} mm wide)")
 
     logger.info(f"\nOutput -> {out}")
     logger.info("Done OK")

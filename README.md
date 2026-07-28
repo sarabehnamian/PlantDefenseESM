@@ -1,278 +1,204 @@
 # PlantDefenseESM
 
-Computational pipeline for **prioritizing candidate plant defense proteins** using protein language model embeddings (ESM-2) and a curated panel of defense anchor proteins. The pipeline takes a complete plant proteome, embeds all proteins into ESM-2 representation space, scores their cosine similarity to per-category anchor centroids, and returns ranked candidate lists together with summary statistics and figures.
+Computational pipeline for **prioritizing candidate plant defense proteins** using
+protein language model embeddings (ESM-2) and a curated set of defense anchor
+proteins. The pipeline takes a reference plant proteome, embeds every protein into
+ESM-2 representation space, scores each protein against six defense category
+centroids, and returns ranked candidate lists together with summary statistics,
+benchmarks and publication-size figures.
 
 ## Scope and limitations
 
-**PlantDefenseESM prioritizes candidates. It does not confirm defense function.**
+Please read this section before using the outputs.
 
-- Outputs are **ranked hypotheses for experimental follow-up**, not validated defense genes. No candidate produced by this pipeline has been experimentally tested here.
-- A RefSeq description containing a defense-associated keyword provides **annotation-based support**, not independent biological confirmation.
-- In benchmarking against a curated *Arabidopsis* defense set, ESM-2 embedding similarity **did not outperform** sequence- or domain-based methods: anchor alignment achieved a higher AUPRC (0.180 vs 0.150) and InterPro domain retrieval was substantially more precise (0.56 vs 0.17). The embeddings recovered a **complementary** subset of curated defense proteins that those baselines missed; that complementarity, not superior discrimination, is the point of the method.
-- Curated benchmarking was feasible only in *A. thaliana*. Fewer than 20 curated defense proteins could be mapped to the rice and grapevine RefSeq proteomes, so **equivalent biological performance across species has not been established**. Application to three proteomes demonstrates computational portability, not cross-species accuracy.
-- Performance may vary with taxonomic distance from the Arabidopsis-heavy anchor panel, proteome annotation quality, and protein-family composition.
-- Proteins longer than 1,022 residues are truncated by ESM-2. This disproportionately affects NBS-LRR proteins and long LRR receptor kinases; sensitivity for these classes is uncertain.
+- **PlantDefenseESM prioritizes candidates. It does not confirm defense function.**
+  Every output is a ranked hypothesis for experimental follow-up, not a defense
+  gene.
+- **RefSeq keyword matching provides annotation-based support and enrichment, not
+  biological confirmation.** A protein whose description contains a
+  defense-associated keyword is an *annotation-supported candidate*; that is a
+  statement about the text annotation, not about the protein.
+- **ESM-2 did not outperform the sequence-based baselines.** On the curated
+  *Arabidopsis* GO defense set, anchor alignment recovered more curated proteins
+  than the embeddings at matched candidate counts (674 versus 482), and InterPro
+  domain retrieval was more precise though narrower. The embeddings are
+  complementary rather than superior: 70 curated proteins were recovered by ESM-2
+  alone, raising recovery by the two sequence-based methods combined from 703 to
+  773.
+- **Curated benchmarking was feasible only in *Arabidopsis*.** Fewer than 20
+  curated defense proteins could be mapped to the rice and grapevine RefSeq
+  proteomes, so application to three proteomes demonstrates computational
+  portability but does not establish equivalent biological performance across
+  species.
+- **The anchor set is Arabidopsis-heavy** (33 proteins, mostly *A. thaliana*), and
+  ESM-2 truncates sequences longer than 1,022 residues, which affects the longest
+  immune receptors.
 
-### Terminology used in this repository and in the manuscript
+### Levels of evidence
+
+These five terms are used consistently throughout the code, the outputs and the
+manuscript, and are not interchangeable:
 
 | Term | Meaning |
 | --- | --- |
-| Curated benchmark protein | Included in a curated GO or structural-family reference set |
-| Annotation-supported candidate | Candidate whose RefSeq description contains a defense-associated keyword |
-| Domain-supported keyword-negative candidate | Lacks a selected keyword but contains a designated defense-associated domain |
-| Candidate lacking defense-associated annotation | Lacks both selected keywords and designated domain evidence |
-| Experimentally validated defense protein | Supported by direct experimental evidence in the literature (applies only to the 33 anchor proteins) |
+| Curated benchmark protein | Included in a curated Gene Ontology or structural-family reference set |
+| Annotation-supported candidate | Carries a defense-associated RefSeq keyword |
+| Domain-supported keyword-negative candidate | No such keyword, but carries a designated defense-associated domain |
+| Candidate lacking defense-associated annotation | Neither |
+| Experimentally validated defense protein | Supported by direct experimental evidence in the literature |
 
-The words *discovery*, *novel*, and *confirmed* are not used to describe pipeline outputs.
-
-## Manuscript version
-
-| | |
-| --- | --- |
-| Release corresponding to the submitted revision | `vX.Y.Z` |
-| Archived DOI | `10.5281/zenodo.XXXXXXX` |
-| Manuscript | Behnamian & Boyouk, submitted to *BMC Bioinformatics* (submission ID 642bb21d-50eb-413e-8f0d-48481aa415d4) |
-
-Code, parameters, and committed result tables in that release are the ones underlying the submitted manuscript. Later commits on `main` may diverge.
+Only the anchor set and the curated reference sets rest on curated or experimental
+evidence.
 
 ## Project overview
 
-The repository is organized as a **stepwise, reproducible pipeline**. Each numbered script expects to be run from the project root and writes its outputs into a corresponding subdirectory under `results/`:
+The repository is a **stepwise, reproducible pipeline**. Each numbered script is
+run from the project root and writes into a subdirectory of `results/`.
 
-- **`00_download_proteome.py`**: Download or load the target plant proteome from NCBI (or from a user-specified FASTA), filter low-quality sequences, and produce:
+- **`00_download_proteome.py`** — download or load the proteome from NCBI, filter
+  short and non-standard sequences.
+  `results/<species>/00_download_proteome/{proteome.fasta, proteome_stats.csv, summary.yaml}`
 
-  * `results/<species>/00_download_proteome/proteome.fasta`
-  * `results/<species>/00_download_proteome/proteome_stats.csv`
-  * `results/<species>/00_download_proteome/summary.yaml`
+- **`01_fetch_anchors.py`** — fetch the 33 experimentally validated anchor proteins
+  from UniProt across six defense categories (NBS-LRR, PR proteins, RLK defense,
+  defense signalling, antimicrobial, HR / cell death).
+  `results/<species>/01_fetch_anchors/{anchors.fasta, anchors_metadata.csv, summary.yaml}`
 
-- **`01_fetch_anchors.py`**: Fetch experimentally validated defense "anchor" proteins from UniProt, using curated categories such as NBS-LRR, PR proteins, RLK defense, signaling, antimicrobial, and HR/cell death. Outputs:
+- **`02_embed_proteins.py`** — embed the proteome and the anchors with ESM-2
+  (default `esm2_t33_650M_UR50D`), mean-pooled over residues.
+  `results/<species>/02_embed_proteins/{proteome_embeddings.npz, anchor_embeddings.npz, embedding_stats.yaml}`
 
-  * `results/<species>/01_fetch_anchors/anchors.fasta`
-  * `results/<species>/01_fetch_anchors/anchors_metadata.csv`
-  * `results/<species>/01_fetch_anchors/summary.yaml`
+- **`03_classify_defense.py`** — score every protein by cosine similarity to the six
+  category centroids, convert to per-category Z-scores and percentile ranks, and
+  select candidates at three stringency tiers.
+  `results/<species>/03_classify_defense/{similarity_matrix.csv, zscore_matrix.csv, top_per_category.csv, summary.yaml}`
 
-- **`02_embed_proteins.py`**: Use an ESM-2 model (default `esm2_t33_650M_UR50D`) to embed both the full proteome and the anchor set:
+- **`04_validate_annotations.py`** — annotation-based support: scan RefSeq
+  descriptions for the 47 defense-associated keywords, test enrichment among
+  candidates (Fisher's exact test), and assign each protein an annotation-support
+  class (annotation-supported candidate / candidate without defense keyword /
+  keyword only / non-candidate).
+  `results/<species>/04_validate_annotations/{validated_results.csv, enrichment_tests.csv, annotation_support_breakdown.csv, summary.yaml}`
 
-  * `results/<species>/02_embed_proteins/proteome_embeddings.npz`
-  * `results/<species>/02_embed_proteins/anchor_embeddings.npz`
-  * `results/<species>/02_embed_proteins/embedding_stats.yaml`
+- **`05_extract_candidates.py`** — candidate tables per tier plus the
+  keyword-negative subset and candidate sequences.
+  `results/<species>/05_extract_candidates/{candidates_strict.csv, candidates_moderate.csv, candidates_lenient.csv, keyword_negative_candidates.csv, candidate_sequences.fasta, summary.yaml}`
 
-- **`03_classify_defense.py`**: Score each protein against defense categories using embedding similarity, build per-category Z-scores, and select candidates at multiple stringency tiers (strict / moderate / lenient). Outputs:
+- **`06_multispecies_figures.py`** — manuscript Figures 2, 3, 5 and 6, drawn at
+  BMC's 170 mm final size, plus the fully labelled supplementary heatmaps.
+  `results/06b_multispecies_figures/`
 
-  * `results/<species>/03_classify_defense/similarity_matrix.csv`
-  * `results/<species>/03_classify_defense/zscore_matrix.csv`
-  * `results/<species>/03_classify_defense/top_per_category.csv`
-  * `results/<species>/03_classify_defense/summary.yaml`
+- **`07_cross_species_compare.py`** — cross-species comparison tables and
+  manuscript Figure 7.
+  `results/07_cross_species_compare/`
 
-- **`04_validate_annotations.py`**: Match defense-associated keywords against RefSeq protein descriptions to measure **annotation-based support** for the candidates, and assign each protein an annotation-support class (`annotation_supported_candidate` / `candidate_without_defense_keyword` / `keyword_only` / `non_candidate`). This is an enrichment check against an orthogonal annotation source; it is not biological validation. Outputs:
+- **`08_make_supplementary_tables.py`** — the per-protein moderate-tier candidate
+  workbook (Additional file 1).
+  `results/08_supplementary_tables/PlantDefenseESM_Supplementary_Candidates.xlsx`
 
-  * `results/<species>/04_validate_annotations/validated_results.csv`
-  * `results/<species>/04_validate_annotations/enrichment_tests.csv`
-  * `results/<species>/04_validate_annotations/annotation_support_breakdown.csv`
-  * `results/<species>/04_validate_annotations/summary.yaml`
+- **`09_benchmark_curated.py`** — benchmark against the curated GO defense set
+  (AUPRC, ROC-AUC, precision/recall, fold enrichment).
+  `results/09_benchmark_curated/{benchmark_metrics.csv, benchmark_overall.csv, pr_curve_<species>.png}`
 
-- **`05_extract_candidates.py`**: Extract final candidate tables at each stringency tier and generate FASTA files with the candidate sequences:
+- **`10_benchmark_families.py`** — recall of the curated NLR / PR / LRR-RK
+  structural families.
+  `results/09_benchmark_curated/families_recall.csv`
 
-  * `results/<species>/05_extract_candidates/candidates_strict.csv`
-  * `results/<species>/05_extract_candidates/candidates_moderate.csv`
-  * `results/<species>/05_extract_candidates/candidates_lenient.csv`
-  * `results/<species>/05_extract_candidates/candidate_sequences.fasta`
-  * `results/<species>/05_extract_candidates/keyword_negative_candidates.csv`
-  * `results/<species>/05_extract_candidates/summary.yaml`
+- **`11_anchor_robustness.py`** — leave-one-anchor-out and leave-three-out
+  robustness of the moderate-tier candidate sets.
+  `results/11_anchor_robustness/{robustness_summary.csv, loao_per_anchor_<species>.csv}`
 
-- **`06_multispecies_figures.py`**: Build multi-panel figures comparing candidate landscapes across species (*Arabidopsis thaliana*, *Vitis vinifera*, *Oryza sativa*). Outputs in:
+- **`12_benchmark_baselines.py`** — ESM-2 against anchor alignment
+  (Smith–Waterman or BLAST), InterPro domain retrieval and RefSeq keyword
+  retrieval on the curated set.
+  `results/12_benchmark_baselines/{baseline_metrics.csv, recovered_breakdown.csv}`
 
-  * `results/06b_multispecies_figures/fig*_*.png`
+- **`13_windowed_embed.py`** — windowed ESM-2 re-embedding of the sequences that
+  exceed the 1,022-residue input limit, tiled into overlapping windows with the
+  final window flush to the C-terminus.
+  `results/<species>/13_windowed_embed/{windowed_proteome_embeddings.npz, windowed_anchor_embeddings.npz, windows_manifest.csv, summary.yaml}`
 
-- **`07_cross_species_compare.py`**: Cross-species comparison of defense categories and annotation-support patterns, producing summary CSVs and logs in:
+- **`14_truncation_sensitivity.py`** — whether retaining the C-terminal regions of
+  long proteins changes the ranking and recall of long immune receptors.
+  `results/14_truncation_sensitivity/`
 
-  * `results/07_cross_species_compare/`
+- **`15_baseline_overlap.py`** — the complete method-overlap breakdown among the
+  curated defense proteins: the eight mutually exclusive classes formed by ESM-2,
+  alignment and domain retrieval, plus per-protein membership.
+  `results/15_baseline_overlap/{overlap_cells_<species>.csv, overlap_pairwise_<species>.csv, overlap_table_<species>.csv, positive_membership_<species>.csv}`
 
-  Note: because candidate selection is percentile-based, candidate counts are a fixed fraction of each proteome by design. Comparable proportions across species are a property of the selection rule, not evidence of similarly sized defense repertoires.
+Peer-review revision analyses live in **`analysis/`** and read the step outputs
+above (run from the project root):
 
-- **`08_make_supplementary_tables.py`**: Assemble the per-protein moderate-tier candidate table for all three species into the supplementary workbook (Additional file 1) — one sheet per species plus a data dictionary and summary:
+| Script | Purpose |
+| --- | --- |
+| `analysis/r2_param_sensitivity.py` | Percentile and top-N threshold sensitivity (Additional file 3) |
+| `analysis/r2_keyword_specificity.py` | Partition of the 47 keywords into 39 defense-specific and 8 broad terms, and enrichment under each subset (Additional file 2) |
+| `analysis/r2_novel_domain_support.py` | InterPro support for keyword-negative candidates |
+| `analysis/r2_novel_pfam_support.py` | Pfam (pyhmmer) support for keyword-negative candidates, scanned on our own sequences |
+| `analysis/r2_anchor_in_candidates.py` | Whether near-identical anchor homologs enter the candidate sets |
+| `analysis/r2_stress_vs_defense.py` | Overlap of candidates with abiotic-stress, developmental and metabolic vocabulary |
+| `analysis/r3_false_negatives.py` | Curated defense proteins missed at the moderate tier, with named examples |
+| `analysis/r3_truncation_analysis.py` | Truncation counts per proteome, per anchor and per category |
+| `analysis/r3_percategory_topcandidates.py` | Manuscript Figure 4 and its supplementary version |
+| `analysis/r3_word_boundary_check.py` | Substring versus whole-word keyword matching |
+| `analysis/r3_solve_keyword_split.py` | Reconstructs the broad/specific keyword split from the published fold enrichments |
 
-  * `results/08_supplementary_tables/PlantDefenseESM_Supplementary_Candidates.xlsx`
-
-- **`09_benchmark_curated.py`**: Benchmark the ESM-2 ranking against curated GO defense sets (AUPRC, ROC-AUC, fold enrichment, precision–recall curves):
-
-  * `results/09_benchmark_curated/benchmark_metrics.csv`, `benchmark_overall.csv`, `pr_curve_<species>.png`
-
-- **`10_benchmark_families.py`**: Family-level recall against curated NLR / PR / LRR-RK sets:
-
-  * `results/09_benchmark_curated/families_recall.csv`
-
-- **`11_anchor_robustness.py`**: Leave-one-anchor-out and leave-three-out robustness of the moderate-tier candidate sets:
-
-  * `results/11_anchor_robustness/robustness_summary.csv`, `loao_per_anchor_<species>.csv`
-
-- **`12_benchmark_baselines.py`**: Head-to-head comparison of ESM-2 against alignment (Smith–Waterman), InterPro domain retrieval, and RefSeq keyword retrieval, with the recovered-by-method breakdown:
-
-  * `results/12_benchmark_baselines/baseline_metrics.csv`, `recovered_breakdown.csv`
-
-Peer-review revision analyses live in **`analysis/`** and read the step outputs above (run from the project root):
-
-- **`analysis/r2_param_sensitivity.py`** → `results/r2_param_sensitivity_*.csv` (percentile / top-N threshold sensitivity)
-- **`analysis/r2_keyword_specificity.py`** → `results/r2_keyword_enrichment_*.csv`, `r2_keyword_specificity_summary.csv`
-- **`analysis/r2_novel_domain_support.py`**, **`analysis/r2_novel_pfam_support.py`** → `results/r2_novel_*_support_*.csv` (orthogonal InterPro/Pfam support for keyword-negative candidates)
-- **`analysis/r3_false_negatives.py`** → `results/r3_false_negatives_*.csv`
-- **`analysis/r3_truncation_analysis.py`** → per-species 1,022-residue truncation counts and per-category enrichment (printed to console)
-
-The shared utilities used throughout the pipeline live in:
-
-- **`shared.py`**:
-  * `load_config()` – read `config.yaml` and provide defaults (species, model, thresholds, device, etc.).
-  * `step_dir()` – create and return per-step result directories under `results/`.
-  * `get_logger()` – per-step console + file logging.
-  * `DEFENSE_CATEGORIES`, `CORE_ANCHORS`, `VALIDATION_KEYWORDS` – curated biological constants for plant immunity.
+Shared utilities live in **`shared.py`**: `load_config()`, `step_dir()`,
+`get_logger()`, and the curated constants `DEFENSE_CATEGORIES`, `CORE_ANCHORS`
+and `VALIDATION_KEYWORDS`.
 
 ## Installation
 
-This project is written in **Python 3.9+** and depends on standard scientific and machine learning libraries plus **ESM-2** from Meta AI.
-
-### 1. Create and activate an environment
-
-Using `conda` (recommended):
+Python 3.9+, plus ESM-2 from Meta AI.
 
 ```
 conda create -n plant-defense-esm python=3.10 -y
 conda activate plant-defense-esm
 ```
 
-Or with `venv`:
+or
 
 ```
 python -m venv .venv
-.\.venv\Scripts\activate  # on Windows
-source .venv/bin/activate  # on Linux/macOS
+.\.venv\Scripts\activate     # Windows
+source .venv/bin/activate    # Linux / macOS
 ```
 
-### 2. Install Python dependencies
-
 ```
-pip install numpy pandas matplotlib seaborn scikit-learn biopython pyyaml
-```
-
-Then install ESM-2 and its dependencies (PyTorch, fair-esm or equivalent):
-
-```
-pip install torch --index-url https://download.pytorch.org/whl/cu121  # pick the right CUDA/CPU build
+pip install numpy pandas matplotlib seaborn scikit-learn biopython pyyaml openpyxl
+pip install torch --index-url https://download.pytorch.org/whl/cu121   # pick your CUDA/CPU build
 pip install fair-esm
+pip install pyhmmer                                                    # only for r2_novel_pfam_support.py
 ```
 
-If you are running entirely on CPU, use the CPU-only PyTorch wheels instead. GPU is strongly recommended for the embedding step (`02_embed_proteins.py`).
-
-The exact package versions used to produce the reported results are pinned in **`requirements.txt`**:
+The exact versions used for the published results are pinned in
+`requirements.txt`:
 
 ```
 pip install -r requirements.txt
 ```
 
+GPU is strongly recommended for `02_embed_proteins.py` and `13_windowed_embed.py`;
+everything else runs on CPU from cached outputs.
+
 ## Configuration
 
-Pipeline behaviour is controlled via a YAML configuration file at the project root:
-
-- **`config.yaml`** (expected by `shared.load_config()`), with keys such as:
-  * `species`: target species identifier (e.g. `vitis_vinifera`, `arabidopsis_thaliana`, `oryza_sativa`).
-  * `proteome_path`: optional path to an existing proteome FASTA; if unset, the proteome is downloaded from NCBI.
-  * `esm_model`: ESM-2 model name (default `esm2_t33_650M_UR50D`).
-  * `batch_size`: batch size for embedding.
-  * `max_seq_len`: maximum sequence length (ESM-2 limit, default 1022).
-  * `device`: `"auto"`, `"cpu"`, or a specific CUDA device string.
-  * `z_threshold_strict`, `z_threshold_moderate`, `z_threshold_lenient`: cutoffs for candidate selection.
-  * `tsne_perplexity`, `tsne_n_sample`: parameters for t-SNE visualisation.
-  * `base_output_dir`: base results directory (default `"results"`).
-
-The stringency tiers are pragmatic prioritization cutoffs, not trained classification boundaries. Because they are percentile-based, the number of candidates is a fixed fraction of each proteome by design.
-
-If `config.yaml` is missing, the pipeline falls back to defaults defined in `shared.py`.
+Behaviour is controlled by `config.yaml` at the project root, with per-species
+presets provided (`config_arabidopsis.yaml`, `config_rice.yaml`,
+`config_grapevine.yaml`). Keys include `species`, `proteome_path`, `esm_model`,
+`batch_size`, `max_seq_len`, `device`, the percentile cutoffs
+(`percentile_strict` 99.5, `percentile_moderate` 99.0, `percentile_lenient` 97.0),
+`top_n_per_category` (50), `tsne_perplexity`, `tsne_n_sample`, `random_seed` (42)
+and `base_output_dir`. If `config.yaml` is missing, defaults in `shared.py` apply.
 
 ## Running the pipeline
 
-From the project root, after configuring your environment and `config.yaml`, run the steps in order:
-
 ```
-python 00_download_proteome.py
-python 01_fetch_anchors.py
-python 02_embed_proteins.py
-python 03_classify_defense.py
-python 04_validate_annotations.py
-python 05_extract_candidates.py
-```
+# 1) select a species
+copy config_arabidopsis.yaml config.yaml      # Windows  (cp on Linux/macOS)
 
-Each step logs to both the console and a per-step log file under `results/<species>/<step_name>/`.
-
-To generate multi-species figures (after running the single-species pipeline for each species):
-
-```
-python 06_multispecies_figures.py
-```
-
-To perform the cross-species comparison and summaries:
-
-```
-python 07_cross_species_compare.py
-```
-
-## Key outputs
-
-- **Candidate tables**: CSV files listing candidates at strict, moderate, and lenient tiers, with per-category Z-scores and annotation-support class.
-- **FASTA sequences**: filtered proteomes and candidate-only FASTA files suitable for downstream structural or evolutionary analyses.
-- **Summary YAML**: per-step YAML files tracking counts, distributions, and parameter settings for provenance.
-- **Figures**:
-  * Z-score histograms with tier thresholds.
-  * Category-specific heatmaps of top candidates.
-  * Annotation-support and category breakdown barplots.
-  * t-SNE visualisations of ESM-2 embedding space with anchors and candidates highlighted. Candidates are selected as high-scoring outliers, so their separation from the background sample is expected and is not independent validation.
-  * Multi-species comparison figures.
-
-## Reproducibility
-
-All stochastic steps use a fixed seed (`random_seed: 42`), so a clean run reproduces the reported tables and figures exactly. The pieces needed to reproduce are:
-
-**Software.** Python 3.9+; exact package versions pinned in `requirements.txt` (`pip install -r requirements.txt`). Embedding (`02_embed_proteins.py`) uses GPU; all revision analyses in `analysis/` run on CPU from cached step outputs.
-
-**Input proteomes** (downloaded from NCBI RefSeq by `00_download_proteome.py`; full URLs in that script):
-
-| Species                | RefSeq assembly                  | Proteins (after the ≥30-aa filter) |
-| ---------------------- | -------------------------------- | ---------------------------------- |
-| *Arabidopsis thaliana* | `GCF_000001735.4` (TAIR10.1)     | 48,207                             |
-| *Oryza sativa*         | `GCF_001433935.1` (IRGSP-1.0)    | 42,575                             |
-| *Vitis vinifera*       | `GCF_030704535.1` (ASM3070453v1) | 40,632                             |
-
-**Fixed parameters** (in `config.yaml` / `shared.py`):
-
-- ESM-2 checkpoint `esm2_t33_650M_UR50D` (33 layers, 1,280-d); per-protein embedding = mean-pool over residues, excluding the BOS token.
-- Scoring: cosine similarity to per-category centroids → per-category Z-scores → percentile ranks.
-- Stringency tiers: strict ≥ 99.5th percentile, moderate ≥ 99.0th, lenient ≥ 97.0th; `top_n_per_category = 50`.
-- `max_seq_len = 1022` (longer proteins truncated); minimum length filter 30 aa; `batch_size = 4`.
-- t-SNE: `perplexity = 30`, `n_sample = 5000`.
-
-**Which script produces each table / figure** (table numbers refer to the release named under *Manuscript version* above):
-
-| Manuscript item                     | Script                               | Output file(s)                                                                           |
-| ----------------------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------- |
-| Table 3 (benchmark vs curated GO)   | `09_benchmark_curated.py`            | `results/09_benchmark_curated/benchmark_metrics.csv`, `benchmark_overall.csv`            |
-| Table 4 (family recall)             | `10_benchmark_families.py`           | `results/09_benchmark_curated/families_recall.csv`                                       |
-| Table 5 (anchor robustness)         | `11_anchor_robustness.py`            | `results/11_anchor_robustness/robustness_summary.csv`                                    |
-| Table 6 (cross-species summary)     | `07_cross_species_compare.py`        | `results/07_cross_species_compare/category_comparison.csv`                                |
-| Baseline comparison and overlap     | `12_benchmark_baselines.py`          | `results/12_benchmark_baselines/baseline_metrics.csv`, `recovered_breakdown.csv`         |
-| Additional file 1 (candidate table) | `08_make_supplementary_tables.py`    | `PlantDefenseESM_Supplementary_Candidates.xlsx`                                          |
-| Figures 1–4                         | `06_multispecies_figures.py`         | `results/06b_multispecies_figures/fig1–4_*.png`                                          |
-| Figure 7 (cross-species bar chart)  | `07_cross_species_compare.py`        | `results/07_cross_species_compare/fig_species_comparison.png`                             |
-| Threshold sensitivity               | `analysis/r2_param_sensitivity.py`   | `results/r2_param_sensitivity_*.csv`                                                     |
-| Benchmark false negatives           | `analysis/r3_false_negatives.py`     | `results/r3_false_negatives_*.csv`                                                       |
-| Truncation analysis                 | `analysis/r3_truncation_analysis.py` | (printed)                                                                                |
-
-Small output tables and figures backing the manuscript are committed under `results/`; the large per-species ESM-2 embeddings (`results/<species>/02_embed_proteins/proteome_embeddings.npz`, 165–209 MB each) are regenerable and are not tracked.
-
-**Minimal end-to-end example** (one species; repeat for each, then run the cross-species/benchmark steps):
-
-```
-# 1) Select a species by copying one of the provided presets to config.yaml
-copy config_arabidopsis.yaml config.yaml      # Windows  (cp ... on Linux/macOS)
-
-# 2) Per-species pipeline
+# 2) per-species pipeline
 python 00_download_proteome.py
 python 01_fetch_anchors.py
 python 02_embed_proteins.py          # GPU recommended
@@ -280,50 +206,119 @@ python 03_classify_defense.py
 python 04_validate_annotations.py
 python 05_extract_candidates.py
 
-# 3) After all three species are processed (these iterate over species internally)
+# 3) once all three species are processed (these iterate over species internally)
 python 06_multispecies_figures.py
-python 07_cross_species_compare.py
+python 07_cross_species_compare.py --runs results\arabidopsis_thaliana results\vitis_vinifera results\oryza_sativa --labels "A. thaliana" "V. vinifera" "O. sativa"
 python 08_make_supplementary_tables.py
 python 09_benchmark_curated.py
 python 10_benchmark_families.py
 python 11_anchor_robustness.py
 python 12_benchmark_baselines.py
+python 15_baseline_overlap.py
 
-# 4) Peer-review revision analyses
-python analysis/r2_param_sensitivity.py results/arabidopsis_thaliana results/oryza_sativa results/vitis_vinifera
+# 4) long-sequence re-embedding (per species, GPU)
+python 13_windowed_embed.py --config config_arabidopsis.yaml
+python 14_truncation_sensitivity.py
+
+# 5) revision analyses
+python analysis/r2_param_sensitivity.py
+python analysis/r2_keyword_specificity.py
+python analysis/r3_percategory_topcandidates.py
+python analysis/r3_false_negatives.py
 python analysis/r3_truncation_analysis.py
 ```
 
-Every step also writes a `summary.yaml` and a log file capturing the parameters, random seed, and high-level statistics; anchor sets, defense categories, and keyword lists are curated and versioned in `shared.py` and tracked via git history.
+Every step writes a `summary.yaml` and a log file recording parameters, the random
+seed and high-level statistics.
 
-## Citation
+## Which script produces each manuscript item
 
-If you use this pipeline or derived figures in a publication, please cite the archived release:
+| Manuscript item | Script | Output |
+| --- | --- | --- |
+| Table 2 (RefSeq keyword enrichment by tier) | `04_validate_annotations.py` | `results/<species>/04_validate_annotations/enrichment_tests.csv` |
+| Table 3 (anchor robustness) | `11_anchor_robustness.py` | `results/11_anchor_robustness/robustness_summary.csv` |
+| Table 4 (benchmark vs curated GO set) | `09_benchmark_curated.py` | `results/09_benchmark_curated/benchmark_metrics.csv`, `benchmark_overall.csv` |
+| Table 5 (family recall) | `10_benchmark_families.py` | `results/09_benchmark_curated/families_recall.csv` |
+| Table 6 (method-overlap breakdown) | `15_baseline_overlap.py` | `results/15_baseline_overlap/overlap_table_arabidopsis_thaliana.csv` |
+| Table 7 (windowed embedding) | `13_windowed_embed.py` → `14_truncation_sensitivity.py` | `results/14_truncation_sensitivity/` |
+| Table 8 (cross-species summary) | `07_cross_species_compare.py` | `results/07_cross_species_compare/cross_species_summary.csv` |
+| Figure 2 (Z-score distributions) | `06_multispecies_figures.py` | `results/06b_multispecies_figures/fig1_zscore_distributions.png` |
+| Figure 3 (category heatmaps) | `06_multispecies_figures.py` | `results/06b_multispecies_figures/fig2_category_heatmaps.png` |
+| Figure 4 (per-category candidates) | `analysis/r3_percategory_topcandidates.py` | `results/r3_percategory/fig_percategory_topcandidates.png` |
+| Figure 5 (annotation support and category breakdown) | `06_multispecies_figures.py` | `results/06b_multispecies_figures/fig3_annotation_support_and_breakdown.png` |
+| Figure 6 (t-SNE) | `06_multispecies_figures.py` | `results/06b_multispecies_figures/fig4_tsne_embedding_space.png` |
+| Figure 7 (cross-species categories) | `07_cross_species_compare.py` | `results/07_cross_species_compare/fig_species_comparison.png` |
+| Additional file 1 (candidate workbook) | `08_make_supplementary_tables.py` | `results/08_supplementary_tables/PlantDefenseESM_Supplementary_Candidates.xlsx` |
+| Additional file 2 (keyword partition) | `analysis/r2_keyword_specificity.py` | `results/r2_keyword_groups.csv` |
+| Additional file 3 (threshold sensitivity) | `analysis/r2_param_sensitivity.py` | `results/r2_param_sensitivity_*.csv` |
+| Additional file 4 (supplementary heatmaps) | `06_multispecies_figures.py`, `analysis/r3_percategory_topcandidates.py` | `figS_category_heatmaps_full_*.png`, `figS_percategory_full_*.png` |
 
-> Behnamian, S., & Boyouk, N. PlantDefenseESM: an ESM-2 embedding pipeline for prioritizing candidate plant defense proteins. Version `vX.Y.Z`. Zenodo. `10.5281/zenodo.XXXXXXX`
-> GitHub: <https://github.com/sarabehnamian/PlantDefenseESM>
+## Reproducibility
+
+All stochastic steps use a fixed seed (`random_seed: 42`), so a clean run
+reproduces the published tables and figures.
+
+**Input proteomes** (downloaded by `00_download_proteome.py`; URLs in that script):
+
+| Species | RefSeq assembly | Proteins (after the ≥30-aa filter) |
+| --- | --- | --- |
+| *Arabidopsis thaliana* | `GCF_000001735.4` (TAIR10.1) | 48,207 |
+| *Oryza sativa* | `GCF_001433935.1` (IRGSP-1.0) | 42,575 |
+| *Vitis vinifera* | `GCF_030704535.1` (ASM3070453v1) | 40,632 |
+
+**Fixed parameters**: ESM-2 checkpoint `esm2_t33_650M_UR50D` (33 layers, 1,280-d),
+mean-pooled per-protein embedding excluding the BOS token; cosine similarity to
+per-category centroids → per-category Z-scores → percentile ranks; tiers strict
+≥ 99.5th, moderate ≥ 99.0th, lenient ≥ 97.0th percentile with
+`top_n_per_category = 50`; `max_seq_len = 1022`; minimum length 30 aa;
+`batch_size = 4`; t-SNE `perplexity = 30`, `n_sample = 5000`.
+
+Small output tables and figures backing the manuscript are committed under
+`results/`. The per-species ESM-2 embeddings
+(`results/<species>/02_embed_proteins/proteome_embeddings.npz`, 165–209 MB each)
+are regenerable and are not tracked.
+
+## Manuscript version
+
+This branch corresponds to the **second revision** of the associated manuscript.
+A tagged release and archival DOI will be deposited on acceptance so that the
+computational materials cannot change after publication without a record.
 
 ## License
 
-This project is released under the **MIT License**.
-See the `LICENSE` file in the repository root for the full license text.
+MIT. See `LICENSE`.
 
 ## Associated publication
 
-If you use this pipeline in published work, please cite:
+> **Behnamian, S., & Boyouk, N.** *Protein language model embeddings for
+> proteome-wide prioritization of plant defense gene candidates across species.*
+> Globe Institute, University of Copenhagen, Øster Voldgade 5–7, 1350 Copenhagen K,
+> Denmark (`sara.behnamian@sund.ku.dk`); Kempten University of Applied Sciences,
+> Bahnhofstraße 61, 87435 Kempten, Germany
+> (`naghmeh.boyouk@stud.hs-kempten.de`).
 
-> **Behnamian, S., & Boyouk, N.**
-> *Protein language model embeddings are less powerful than sequence homology searches for proteome-wide identification of plant defense gene networks across species.*
-> Submitted to *BMC Bioinformatics* (submission ID 642bb21d-50eb-413e-8f0d-48481aa415d4). DOI to be added on publication.
->
-> Department of Biology, Lund University, Lund 22362, Sweden (`sara.behnamian@biol.lu.se`);
-> Globe Institute, University of Copenhagen, Øster Voldgade 5–7, 1350 Copenhagen K, Denmark (`sara.behnamian@sund.ku.dk`);
-> Kempten University of Applied Sciences, Bahnhofstraße 61, 87435 Kempten, Germany (`naghmeh.boyouk@stud.hs-kempten.de`).
+**Abstract.** Identifying the full complement of defense genes across plant
+proteomes remains challenging, particularly for species with incomplete functional
+annotations. Here we present PlantDefenseESM, a computational pipeline that
+leverages protein language model embeddings to identify and prioritize candidate
+defense proteins at the proteome scale without requiring species-specific training
+or curated gene ontology databases. We generated 1,280-dimensional embeddings for
+all proteins in the proteomes of *Arabidopsis thaliana* (48,207 proteins),
+*Oryza sativa* (42,575) and *Vitis vinifera* (40,632) using ESM-2, a
+transformer-based model pre-trained on 250 million protein sequences. Defense
+candidates were identified by cosine similarity to category centroids defined by
+33 experimentally validated anchor proteins spanning six functional classes. A
+multi-tier selection strategy identified 2,807, 2,442 and 2,354 moderate-tier
+candidates respectively. Annotation-based enrichment analysis against RefSeq
+descriptions showed 3.35–4.22-fold enrichment of defense-annotated proteins among
+candidates (Fisher's exact test, *p* < 10⁻¹⁹⁹ in all species), and 55–59% of
+candidates lacked defense-associated RefSeq keywords. Cross-species comparison
+revealed a conserved category hierarchy with lineage-specific expansions
+consistent with known biology. The pipeline requires only a reference proteome as
+input and provides a scalable framework for defense candidate prioritization,
+though its performance may still depend on the Arabidopsis-heavy anchor set and on
+taxonomic biases in the ESM-2 training data.
 
-### Abstract
-
-> Identifying the full complement of defense genes across plant proteomes remains challenging, particularly for species with incomplete functional annotations. Here we present PlantDefenseESM, a computational pipeline that leverages protein language model embeddings to identify and prioritize candidate defense proteins at the proteome scale without requiring species-specific training or curated gene ontology databases. We generated 1,280-dimensional embeddings for all proteins in the proteomes of *Arabidopsis thaliana* (48,207 proteins), *Oryza sativa* (42,575), and *Vitis vinifera* (40,632) using ESM-2, a transformer-based model pre-trained on 250 million protein sequences. Defense candidates were identified by cosine similarity to category centroids defined by 33 experimentally validated anchor proteins spanning six functional classes: NBS-LRR resistance proteins, pathogenesis-related proteins, receptor-like kinases, defense signaling components, antimicrobial enzymes, and hypersensitive response regulators. A multi-tier selection strategy combining percentile-based and rank-based approaches identified 2,807, 2,442, and 2,354 moderate-tier candidates in *A. thaliana*, *O. sativa*, and *V. vinifera*, respectively. Annotation-based enrichment analysis against RefSeq descriptions showed 3.35–4.22-fold enrichment of defense-annotated proteins among candidates (Fisher's exact test, *p* < 10⁻¹⁹⁹ in all species). Notably, 55–59% of candidates across all three species lacked any existing defense annotation, representing candidates lacking defense-associated RefSeq keywords. Cross-species comparison revealed a conserved category hierarchy with lineage-specific expansions consistent with known biology, including expanded cell death machinery in grapevine and receptor-like kinase families in rice. The pipeline requires only a reference proteome as input and provides a scalable framework for defense candidate prioritization in any sequenced plant genome, though its performance may still depend on the Arabidopsis-heavy anchor set and on taxonomic biases in the ESM-2 training data.
-
-### Keywords
-
-> protein language model; ESM-2; plant innate immunity; proteome-wide classification; NBS-LRR; defense candidate prioritization; *Arabidopsis thaliana*; *Oryza sativa*; *Vitis vinifera*
+**Keywords.** protein language model; ESM-2; plant innate immunity; proteome-wide
+classification; NBS-LRR; defense candidate prioritization; *Arabidopsis thaliana*;
+*Oryza sativa*; *Vitis vinifera*

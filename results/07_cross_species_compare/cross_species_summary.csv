@@ -1,4 +1,4 @@
-species,n_proteins,strict_candidates,strict_pct,moderate_candidates,moderate_pct,lenient_candidates,lenient_pct,known_defense,novel_candidates
-A. thaliana,48207,1443,2.99,2807,5.82,7155,14.84,1150,1657
-V. vinifera,40632,1210,2.98,2354,5.79,6526,16.06,1051,1303
+species,n_proteins,strict_candidates,strict_pct,moderate_candidates,moderate_pct,lenient_candidates,lenient_pct,annotation_supported_candidate,keyword_negative_candidates
+A. thaliana,48207,1443,2.99,2807,5.82,7155,14.84,?,?
+V. vinifera,40632,1210,2.98,2354,5.79,6526,16.06,?,?
 O. sativa,42575,1272,2.99,2442,5.74,6431,15.11,1075,1367

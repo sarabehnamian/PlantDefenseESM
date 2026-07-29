@@ -1,0 +1,137 @@
+==========================================================================
+Truncation sensitivity: truncated vs windowed embeddings
+==========================================================================
+
+==========================================================================
+### Arabidopsis thaliana
+==========================================================================
+  proteome 48,207 | long (windowed) 2,341 (4.86%) | anchors windowed 6
+
+  Centroid shift (cosine, baseline vs windowed anchors):
+    NBS_LRR              0.99972   (4 of its anchors windowed)
+    PR_proteins          1.00000   (0 of its anchors windowed)
+    RLK_defense          0.99997   (2 of its anchors windowed)
+    antimicrobial        1.00000   (0 of its anchors windowed)
+    cell_death_HR        1.00000   (0 of its anchors windowed)
+    defense_signaling    1.00000   (0 of its anchors windowed)
+
+  baseline moderate recomputed: 2,807  (pipeline: 2,807)
+
+  Set stability vs the truncated baseline:
+    windowed_mean  moderate: 2,808 candidates, Jaccard 0.897, retained 0.946, +153 / -152
+    windowed_mean  Spearman(z_max) all 0.9961 | long proteins only 0.9517
+    windowed_max   moderate: 2,794 candidates, Jaccard 0.910, retained 0.951, +126 / -139
+    windowed_max   Spearman(z_max) all 0.9941 | long proteins only 0.9199
+
+  curated GO positives mapped: 2,318 (4.81% prevalence)
+    truncated      AUPRC 0.1499  ROC-AUC 0.6406  moderate precision 0.172 recall 0.208
+    windowed_mean  AUPRC 0.1520  ROC-AUC 0.6406  moderate precision 0.165 recall 0.199
+    windowed_max   AUPRC 0.1530  ROC-AUC 0.6415  moderate precision 0.165 recall 0.199
+
+  NLR (NB-ARC): 254 in proteome (132 >1,022 aa)
+    recall@strict    truncated=0.543  windowed_mean=0.504  windowed_max=0.528
+    recall@moderate  truncated=0.874  windowed_mean=0.827  windowed_max=0.827
+    recall@lenient   truncated=0.925  windowed_mean=0.929  windowed_max=0.949
+    baseline moderate misses: 32 (11 of them >1,022 aa)  -> recovered: windowed_mean 1, windowed_max 2
+
+  PR proteins: 91 in proteome (0 >1,022 aa)
+    recall@strict    truncated=0.593  windowed_mean=0.604  windowed_max=0.593
+    recall@moderate  truncated=0.758  windowed_mean=0.758  windowed_max=0.758
+    recall@lenient   truncated=0.890  windowed_mean=0.890  windowed_max=0.890
+    baseline moderate misses: 22 (0 of them >1,022 aa)  -> recovered: windowed_mean 0, windowed_max 0
+
+  RLK (LRR receptor kinase): 246 in proteome (38 >1,022 aa)
+    recall@strict    truncated=0.537  windowed_mean=0.528  windowed_max=0.541
+    recall@moderate  truncated=0.728  windowed_mean=0.728  windowed_max=0.736
+    recall@lenient   truncated=0.947  windowed_mean=0.947  windowed_max=0.947
+    baseline moderate misses: 67 (13 of them >1,022 aa)  -> recovered: windowed_mean 5, windowed_max 7
+
+  long proteins under windowed_mean: median percentile shift +0.187 (IQR -0.340 to +2.739); 130 crossed into the moderate tier, 28 dropped out
+
+  long proteins under windowed_max: median percentile shift +0.000 (IQR -0.212 to +2.443); 108 crossed into the moderate tier, 19 dropped out
+
+==========================================================================
+### Oryza sativa Japonica Group
+==========================================================================
+  proteome 42,575 | long (windowed) 2,244 (5.27%) | anchors windowed 6
+
+  Centroid shift (cosine, baseline vs windowed anchors):
+    NBS_LRR              0.99972   (4 of its anchors windowed)
+    PR_proteins          1.00000   (0 of its anchors windowed)
+    RLK_defense          0.99997   (2 of its anchors windowed)
+    antimicrobial        1.00000   (0 of its anchors windowed)
+    cell_death_HR        1.00000   (0 of its anchors windowed)
+    defense_signaling    1.00000   (0 of its anchors windowed)
+
+  baseline moderate recomputed: 2,442  (pipeline: 2,442)
+
+  Set stability vs the truncated baseline:
+    windowed_mean  moderate: 2,437 candidates, Jaccard 0.890, retained 0.941, +139 / -144
+    windowed_mean  Spearman(z_max) all 0.9962 | long proteins only 0.9528
+    windowed_max   moderate: 2,436 candidates, Jaccard 0.908, retained 0.951, +115 / -121
+    windowed_max   Spearman(z_max) all 0.9947 | long proteins only 0.9374
+
+  curated GO positives mapped: 17 (0.04% prevalence)
+    [skip] too few curated positives for benchmark metrics
+
+  NLR (NB-ARC): 1 in proteome (1 >1,022 aa)
+    recall@strict    truncated=0.000  windowed_mean=1.000  windowed_max=1.000
+    recall@moderate  truncated=1.000  windowed_mean=1.000  windowed_max=1.000
+    recall@lenient   truncated=1.000  windowed_mean=1.000  windowed_max=1.000
+    baseline moderate misses: 0 (0 of them >1,022 aa)  -> recovered: windowed_mean 0, windowed_max 0
+
+  PR proteins: 3 in proteome (0 >1,022 aa)
+    recall@strict    truncated=1.000  windowed_mean=1.000  windowed_max=1.000
+    recall@moderate  truncated=1.000  windowed_mean=1.000  windowed_max=1.000
+    recall@lenient   truncated=1.000  windowed_mean=1.000  windowed_max=1.000
+    baseline moderate misses: 0 (0 of them >1,022 aa)  -> recovered: windowed_mean 0, windowed_max 0
+
+  RLK (LRR receptor kinase): 3 in proteome (1 >1,022 aa)
+    recall@strict    truncated=0.000  windowed_mean=0.000  windowed_max=0.333
+    recall@moderate  truncated=0.000  windowed_mean=0.333  windowed_max=0.333
+    recall@lenient   truncated=1.000  windowed_mean=1.000  windowed_max=1.000
+    baseline moderate misses: 3 (1 of them >1,022 aa)  -> recovered: windowed_mean 1, windowed_max 1
+
+  long proteins under windowed_mean: median percentile shift +0.139 (IQR -0.229 to +2.082); 124 crossed into the moderate tier, 56 dropped out
+
+  long proteins under windowed_max: median percentile shift +0.010 (IQR -0.181 to +1.967); 102 crossed into the moderate tier, 19 dropped out
+
+==========================================================================
+### Vitis vinifera
+==========================================================================
+  proteome 40,632 | long (windowed) 3,437 (8.46%) | anchors windowed 6
+
+  Centroid shift (cosine, baseline vs windowed anchors):
+    NBS_LRR              0.99972   (4 of its anchors windowed)
+    PR_proteins          1.00000   (0 of its anchors windowed)
+    RLK_defense          0.99997   (2 of its anchors windowed)
+    antimicrobial        1.00000   (0 of its anchors windowed)
+    cell_death_HR        1.00000   (0 of its anchors windowed)
+    defense_signaling    1.00000   (0 of its anchors windowed)
+
+  baseline moderate recomputed: 2,354  (pipeline: 2,354)
+
+  Set stability vs the truncated baseline:
+    windowed_mean  moderate: 2,361 candidates, Jaccard 0.890, retained 0.944, +140 / -133
+    windowed_mean  Spearman(z_max) all 0.9961 | long proteins only 0.9775
+    windowed_max   moderate: 2,360 candidates, Jaccard 0.896, retained 0.947, +132 / -126
+    windowed_max   Spearman(z_max) all 0.9941 | long proteins only 0.9674
+
+  curated GO positives mapped: 19 (0.05% prevalence)
+    [skip] too few curated positives for benchmark metrics
+
+  PR proteins: 8 in proteome (0 >1,022 aa)
+    recall@strict    truncated=0.875  windowed_mean=0.875  windowed_max=0.875
+    recall@moderate  truncated=0.875  windowed_mean=0.875  windowed_max=0.875
+    recall@lenient   truncated=0.875  windowed_mean=0.875  windowed_max=0.875
+    baseline moderate misses: 1 (0 of them >1,022 aa)  -> recovered: windowed_mean 0, windowed_max 0
+
+  RLK (LRR receptor kinase): 1 in proteome (1 >1,022 aa)
+    recall@strict    truncated=0.000  windowed_mean=0.000  windowed_max=0.000
+    recall@moderate  truncated=0.000  windowed_mean=0.000  windowed_max=1.000
+    recall@lenient   truncated=1.000  windowed_mean=1.000  windowed_max=1.000
+    baseline moderate misses: 1 (1 of them >1,022 aa)  -> recovered: windowed_mean 0, windowed_max 1
+
+  long proteins under windowed_mean: median percentile shift +0.019 (IQR -0.549 to +0.980); 115 crossed into the moderate tier, 46 dropped out
+
+  long proteins under windowed_max: median percentile shift -0.047 (IQR -0.308 to +0.733); 116 crossed into the moderate tier, 34 dropped out

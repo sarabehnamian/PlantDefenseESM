@@ -1,0 +1,4 @@
+n_called,TP,FP,FN,precision,recall,F1,fold_vs_background,species,method,AUPRC,ROC_AUC
+2807,482,2325,1836,0.1717,0.2079,0.1881,3.571,Arabidopsis thaliana,ESM-2 (moderate),0.15,0.641
+2807,697,2110,1621,0.2483,0.3007,0.272,5.164,Arabidopsis thaliana,jackhmmer (top-2807),0.183,0.644
+591,333,258,1985,0.5635,0.1437,0.2289,11.718,Arabidopsis thaliana,InterPro-domain,,

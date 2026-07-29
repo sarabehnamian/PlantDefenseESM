@@ -1,0 +1,73 @@
+species,family,tier,arm,n_curated_in_proteome,recovered,recall
+Arabidopsis thaliana,NLR (NB-ARC),strict,truncated,254,138,0.5433
+Arabidopsis thaliana,NLR (NB-ARC),strict,windowed_mean,254,128,0.5039
+Arabidopsis thaliana,NLR (NB-ARC),strict,windowed_max,254,134,0.5276
+Arabidopsis thaliana,NLR (NB-ARC),moderate,truncated,254,222,0.874
+Arabidopsis thaliana,NLR (NB-ARC),moderate,windowed_mean,254,210,0.8268
+Arabidopsis thaliana,NLR (NB-ARC),moderate,windowed_max,254,210,0.8268
+Arabidopsis thaliana,NLR (NB-ARC),lenient,truncated,254,235,0.9252
+Arabidopsis thaliana,NLR (NB-ARC),lenient,windowed_mean,254,236,0.9291
+Arabidopsis thaliana,NLR (NB-ARC),lenient,windowed_max,254,241,0.9488
+Arabidopsis thaliana,PR proteins,strict,truncated,91,54,0.5934
+Arabidopsis thaliana,PR proteins,strict,windowed_mean,91,55,0.6044
+Arabidopsis thaliana,PR proteins,strict,windowed_max,91,54,0.5934
+Arabidopsis thaliana,PR proteins,moderate,truncated,91,69,0.7582
+Arabidopsis thaliana,PR proteins,moderate,windowed_mean,91,69,0.7582
+Arabidopsis thaliana,PR proteins,moderate,windowed_max,91,69,0.7582
+Arabidopsis thaliana,PR proteins,lenient,truncated,91,81,0.8901
+Arabidopsis thaliana,PR proteins,lenient,windowed_mean,91,81,0.8901
+Arabidopsis thaliana,PR proteins,lenient,windowed_max,91,81,0.8901
+Arabidopsis thaliana,RLK (LRR receptor kinase),strict,truncated,246,132,0.5366
+Arabidopsis thaliana,RLK (LRR receptor kinase),strict,windowed_mean,246,130,0.5285
+Arabidopsis thaliana,RLK (LRR receptor kinase),strict,windowed_max,246,133,0.5407
+Arabidopsis thaliana,RLK (LRR receptor kinase),moderate,truncated,246,179,0.7276
+Arabidopsis thaliana,RLK (LRR receptor kinase),moderate,windowed_mean,246,179,0.7276
+Arabidopsis thaliana,RLK (LRR receptor kinase),moderate,windowed_max,246,181,0.7358
+Arabidopsis thaliana,RLK (LRR receptor kinase),lenient,truncated,246,233,0.9472
+Arabidopsis thaliana,RLK (LRR receptor kinase),lenient,windowed_mean,246,233,0.9472
+Arabidopsis thaliana,RLK (LRR receptor kinase),lenient,windowed_max,246,233,0.9472
+Oryza sativa Japonica Group,NLR (NB-ARC),strict,truncated,1,0,0.0
+Oryza sativa Japonica Group,NLR (NB-ARC),strict,windowed_mean,1,1,1.0
+Oryza sativa Japonica Group,NLR (NB-ARC),strict,windowed_max,1,1,1.0
+Oryza sativa Japonica Group,NLR (NB-ARC),moderate,truncated,1,1,1.0
+Oryza sativa Japonica Group,NLR (NB-ARC),moderate,windowed_mean,1,1,1.0
+Oryza sativa Japonica Group,NLR (NB-ARC),moderate,windowed_max,1,1,1.0
+Oryza sativa Japonica Group,NLR (NB-ARC),lenient,truncated,1,1,1.0
+Oryza sativa Japonica Group,NLR (NB-ARC),lenient,windowed_mean,1,1,1.0
+Oryza sativa Japonica Group,NLR (NB-ARC),lenient,windowed_max,1,1,1.0
+Oryza sativa Japonica Group,PR proteins,strict,truncated,3,3,1.0
+Oryza sativa Japonica Group,PR proteins,strict,windowed_mean,3,3,1.0
+Oryza sativa Japonica Group,PR proteins,strict,windowed_max,3,3,1.0
+Oryza sativa Japonica Group,PR proteins,moderate,truncated,3,3,1.0
+Oryza sativa Japonica Group,PR proteins,moderate,windowed_mean,3,3,1.0
+Oryza sativa Japonica Group,PR proteins,moderate,windowed_max,3,3,1.0
+Oryza sativa Japonica Group,PR proteins,lenient,truncated,3,3,1.0
+Oryza sativa Japonica Group,PR proteins,lenient,windowed_mean,3,3,1.0
+Oryza sativa Japonica Group,PR proteins,lenient,windowed_max,3,3,1.0
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),strict,truncated,3,0,0.0
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),strict,windowed_mean,3,0,0.0
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),strict,windowed_max,3,1,0.3333
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),moderate,truncated,3,0,0.0
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),moderate,windowed_mean,3,1,0.3333
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),moderate,windowed_max,3,1,0.3333
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),lenient,truncated,3,3,1.0
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),lenient,windowed_mean,3,3,1.0
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),lenient,windowed_max,3,3,1.0
+Vitis vinifera,PR proteins,strict,truncated,8,7,0.875
+Vitis vinifera,PR proteins,strict,windowed_mean,8,7,0.875
+Vitis vinifera,PR proteins,strict,windowed_max,8,7,0.875
+Vitis vinifera,PR proteins,moderate,truncated,8,7,0.875
+Vitis vinifera,PR proteins,moderate,windowed_mean,8,7,0.875
+Vitis vinifera,PR proteins,moderate,windowed_max,8,7,0.875
+Vitis vinifera,PR proteins,lenient,truncated,8,7,0.875
+Vitis vinifera,PR proteins,lenient,windowed_mean,8,7,0.875
+Vitis vinifera,PR proteins,lenient,windowed_max,8,7,0.875
+Vitis vinifera,RLK (LRR receptor kinase),strict,truncated,1,0,0.0
+Vitis vinifera,RLK (LRR receptor kinase),strict,windowed_mean,1,0,0.0
+Vitis vinifera,RLK (LRR receptor kinase),strict,windowed_max,1,0,0.0
+Vitis vinifera,RLK (LRR receptor kinase),moderate,truncated,1,0,0.0
+Vitis vinifera,RLK (LRR receptor kinase),moderate,windowed_mean,1,0,0.0
+Vitis vinifera,RLK (LRR receptor kinase),moderate,windowed_max,1,1,1.0
+Vitis vinifera,RLK (LRR receptor kinase),lenient,truncated,1,1,1.0
+Vitis vinifera,RLK (LRR receptor kinase),lenient,windowed_mean,1,1,1.0
+Vitis vinifera,RLK (LRR receptor kinase),lenient,windowed_max,1,1,1.0

@@ -1,0 +1,109 @@
+species,category,protein_id,clean_description,ranking_z,has_defense_keyword,z_NBS_LRR,z_PR_proteins,z_RLK_defense,z_defense_signaling,z_antimicrobial,z_cell_death_HR
+A. thaliana,NBS_LRR,NP_199333.1,Disease resistance protein (TIR-NBS-LRR class) family,2.421643,True,2.421643,0.34591523,0.89611197,-0.0026373747,0.22916819,0.39788207
+A. thaliana,NBS_LRR,NP_197290.1,disease resistance protein (TIR-NBS-LRR class),2.3699348,True,2.3699348,0.26771268,0.74533683,-0.12211424,0.24520442,0.329819
+A. thaliana,NBS_LRR,NP_001319997.1,nucleoside-triphosphatase/transmembrane receptor/nucleotide binding/ATP binding protein,2.3501227,False,2.3501227,0.11287871,0.7772886,-0.13573804,0.1018742,0.21527272
+A. thaliana,NBS_LRR,NP_187360.1,NB-ARC domain-containing disease resistance protein,2.3382084,True,2.3382084,-0.06557365,0.707267,-0.56862557,-0.16351,0.28240883
+A. thaliana,NBS_LRR,NP_196159.1,LRR and NB-ARC domains-containing disease resistance protein,2.3145742,True,2.3145742,-0.07411898,0.58093005,-0.45076236,-0.16545749,-0.08684051
+A. thaliana,NBS_LRR,NP_176451.1,Disease resistance protein (CC-NBS-LRR class) family,2.2829363,True,2.2829363,-0.1259058,0.5164433,-0.49693537,-0.16426036,-0.09298641
+A. thaliana,PR_proteins,NP_566426.2,basic chitinase,2.28814,True,-0.2928523,2.28814,-0.13439144,-0.1511774,0.65686995,1.127291
+A. thaliana,PR_proteins,NP_181890.1,Chitinase family protein,2.259935,True,-0.019499728,2.259935,0.22840291,0.13349186,0.77886575,0.97888535
+A. thaliana,PR_proteins,NP_191010.1,homolog of carrot EP3-3 chitinase,2.1680322,True,0.18772413,2.1680322,0.40697417,0.13793376,0.7615726,0.8985889
+A. thaliana,PR_proteins,NP_181885.1,chitinase,2.1238344,True,0.29592407,2.1238344,0.523978,0.32705814,0.91459,0.8318986
+A. thaliana,PR_proteins,NP_197587.1,O-Glycosyl hydrolases family 17 protein,1.8369951,False,0.33297324,1.8369951,0.48834172,-0.1835941,0.85062444,1.3774253
+A. thaliana,PR_proteins,NP_181494.1,glycosyl hydrolase family 17 protein,1.7724844,False,0.3873773,1.7724844,0.6052806,0.1514156,0.91180086,0.9047164
+A. thaliana,RLK_defense,NP_176279.1,NSP-interacting kinase 3,1.9096663,True,1.5580428,0.7315332,1.9096663,0.5384125,0.5109001,0.52501374
+A. thaliana,RLK_defense,NP_179973.2,Leucine-rich repeat protein kinase family protein,1.8944052,True,1.4571273,0.66260076,1.8944052,0.50650847,0.44680554,0.4824859
+A. thaliana,RLK_defense,NP_568696.1,BAK1-interacting receptor-like kinase 1,1.8800718,True,1.5760008,0.66952664,1.8800718,0.4983755,0.5087654,0.43668827
+A. thaliana,RLK_defense,NP_177328.1,somatic embryogenesis receptor-like kinase 1,1.8655921,True,1.3759913,0.624844,1.8655921,0.30095884,0.3459444,0.4325454
+A. thaliana,RLK_defense,NP_196591.2,leucine-rich repeat transmembrane protein kinase family protein,1.8587868,True,1.4029162,0.78135407,1.8587868,0.43810707,0.54747635,0.48253813
+A. thaliana,RLK_defense,NP_001319765.1,meristematic receptor-like kinase,1.8585285,True,1.403459,0.6582373,1.8585285,0.44542137,0.45370832,0.47475353
+A. thaliana,defense_signaling,NP_565070.2,MAP kinase 15,1.1557679,True,0.6198896,0.66273236,0.94304216,1.1557679,0.67389566,0.5321143
+A. thaliana,defense_signaling,NP_001327322.1,calmodulin-binding transcription activator,1.1299353,False,0.55786914,0.7308734,0.8172722,1.1299353,0.77648723,0.4294909
+A. thaliana,defense_signaling,NP_193701.2,NPR1-like protein 4,1.1010077,True,0.47615924,0.38196257,0.6281949,1.1010077,0.6470035,0.115474775
+A. thaliana,defense_signaling,NP_001323341.1,Protein kinase superfamily protein,1.0923275,True,0.8291537,0.68228215,0.95268226,1.0923275,0.75475794,0.6505083
+A. thaliana,defense_signaling,NP_001190382.1,inositol requiring 1-1,1.0888777,False,0.6552501,0.6434741,0.8704797,1.0888777,0.8170733,0.5742118
+A. thaliana,defense_signaling,NP_176899.2,Calmodulin-binding transcription activator protein with CG-1 and Ankyrin domain,1.0884281,False,0.45547593,0.5602983,0.6873792,1.0884281,0.5782494,0.41749576
+A. thaliana,antimicrobial,NP_190894.1,phenylalanine ammonia-lyase 2,1.8763715,True,0.073982246,1.0255584,0.28113928,0.27092874,1.8763715,0.9789899
+A. thaliana,antimicrobial,NP_181241.1,PHE ammonia lyase 1,1.8615451,False,0.050106194,1.0318627,0.2679414,0.29977423,1.8615451,1.0146017
+A. thaliana,antimicrobial,NP_196897.1,Chalcone and stilbene synthase family protein,1.7768837,True,0.3641617,0.76607275,0.049994107,-0.2704634,1.7768837,1.0263339
+A. thaliana,antimicrobial,NP_001319906.1,hydroxymethylglutaryl-CoA synthase / HMG-CoA synthase / 3-hydroxy-3-methylglutaryl coenzyme A synthase,1.6526494,False,0.034158856,0.9250586,0.22875057,0.44063875,1.6526494,0.65252364
+A. thaliana,antimicrobial,NP_174368.1,CTP synthase family protein,1.6085129,False,0.3291413,1.2629716,0.488691,0.28034252,1.6085129,1.2576832
+A. thaliana,antimicrobial,NP_171620.2,3-ketoacyl-CoA synthase 1,1.5671921,False,0.5462703,1.0486668,0.3634978,-0.031012814,1.5671921,1.5027846
+A. thaliana,cell_death_HR,NP_849549.1,LSD1 zinc finger family protein,2.0359933,False,-1.149665,-0.16241299,-1.5272424,-1.6819179,-0.934688,2.0359933
+A. thaliana,cell_death_HR,NP_564821.1,respiratory burst oxidase protein F,1.8457317,True,0.31725967,0.7826786,-0.07760832,-0.2342358,0.68410194,1.8457317
+A. thaliana,cell_death_HR,NP_199919.1,NADPH/respiratory burst oxidase protein D,1.8429677,True,0.33763728,0.7955474,-0.12868276,-0.32242537,0.7212917,1.8429677
+A. thaliana,cell_death_HR,NP_194841.2,SHK1 binding protein 1,1.8263532,False,0.42165875,1.0526705,0.19661197,-0.110064656,1.1986989,1.8263532
+A. thaliana,cell_death_HR,NP_001329809.1,trehalose phosphatase/synthase 5,1.8090807,False,0.72885305,0.8388089,0.18800019,-0.07233221,1.1123009,1.8090807
+A. thaliana,cell_death_HR,NP_193817.2,tripeptidyl peptidase ii,1.8063967,False,0.42092636,0.93034005,0.085568644,-0.22428097,1.0332729,1.8063967
+V. vinifera,NBS_LRR,XP_010645915.1,disease resistance protein RUN1,1.8792006,True,1.8792006,0.10487449,0.6161814,-0.13367154,-0.04358285,0.1502501
+V. vinifera,NBS_LRR,XP_059590305.1,disease resistance protein RPV1 isoform X1,1.8680155,True,1.8680155,0.16769198,0.662189,-0.09429111,0.007607891,0.19048698
+V. vinifera,NBS_LRR,XP_019078443.1,disease resistance protein RPM1 isoform X1,1.8654846,True,1.8654846,0.011790521,0.6025402,-0.14631136,0.009540612,0.21444638
+V. vinifera,NBS_LRR,XP_059599211.1,putative disease resistance protein RGA3 isoform X1,1.8634952,True,1.8634952,-0.074584186,0.6282549,-0.11047606,-0.104016766,-0.06744312
+V. vinifera,NBS_LRR,XP_019071991.1,disease resistance protein RPV1,1.8581339,True,1.8581339,0.27914867,0.74417204,0.040717844,0.14238127,0.25797188
+V. vinifera,NBS_LRR,XP_059599261.1,putative disease resistance protein RGA4,1.8572915,True,1.8572915,0.09179877,0.735598,0.078595765,0.0019791562,0.07081385
+V. vinifera,PR_proteins,NP_001267891.1,basic endochitinase precursor,1.8859434,True,-0.29398736,1.8859434,-0.08997291,-0.05559232,0.6242926,0.97596884
+V. vinifera,PR_proteins,NP_001268050.1,class I extracellular chitinase precursor,1.8240551,True,-0.39730287,1.8240551,-0.16528831,-0.04713882,0.52250475,0.89621913
+V. vinifera,PR_proteins,XP_003632384.1,LOW QUALITY PROTEIN: chitinase 10,1.7927588,True,0.12029803,1.7927588,0.26962125,0.17639382,0.72998106,0.85094404
+V. vinifera,PR_proteins,XP_002274537.1,endochitinase EP3,1.694235,True,0.06787278,1.694235,0.34181595,0.2569525,0.7312812,0.6822101
+V. vinifera,PR_proteins,NP_001268075.1,class IV chitinase precursor,1.60799,True,-0.634536,1.60799,-0.31863424,-0.32569557,0.31817853,0.67038417
+V. vinifera,PR_proteins,XP_010650683.1,endochitinase PR4,1.6015507,True,0.11005436,1.6015507,0.40525818,0.44036472,0.76603884,0.6180482
+V. vinifera,RLK_defense,XP_002269902.1,protein NSP-INTERACTING KINASE 1,1.529072,True,1.1917198,0.653912,1.529072,0.52245617,0.4898242,0.46299872
+V. vinifera,RLK_defense,XP_010657608.1,BRASSINOSTEROID INSENSITIVE 1-associated receptor kinase 1 isoform X1,1.5154151,True,1.1972595,0.7029258,1.5154151,0.47108388,0.4854969,0.49581787
+V. vinifera,RLK_defense,XP_003633015.1,probable LRR receptor-like serine/threonine-protein kinase At5g45780 isoform X1,1.5006204,True,1.183804,0.61199796,1.5006204,0.47520956,0.42211872,0.38364008
+V. vinifera,RLK_defense,XP_003633168.1,probable LRR receptor-like serine/threonine-protein kinase At4g30520,1.4908588,True,1.0646621,0.699049,1.4908588,0.56165916,0.5086946,0.47459328
+V. vinifera,RLK_defense,XP_002270994.2,LRR receptor-like serine/threonine-protein kinase FEI 2,1.488032,True,1.2252305,0.5464565,1.488032,0.4468104,0.412484,0.3824951
+V. vinifera,RLK_defense,XP_003633815.1,probable inactive receptor kinase At1g27190,1.4855767,True,1.2040752,0.591211,1.4855767,0.5151391,0.44160658,0.31489527
+V. vinifera,defense_signaling,XP_002272118.2,calmodulin-binding transcription activator 6 isoform X1,0.9859411,False,0.38368586,0.6229996,0.7000125,0.9859411,0.66199446,0.3255628
+V. vinifera,defense_signaling,XP_059593116.1,eIF-2-alpha kinase GCN2,0.955478,True,0.53334266,0.6389211,0.7907115,0.955478,0.7319991,0.30391124
+V. vinifera,defense_signaling,XP_002274045.1,BTB/POZ domain and ankyrin repeat-containing protein NPR1 isoform X1,0.9533433,True,0.41627735,0.4550363,0.6209559,0.9533433,0.62124044,0.21103683
+V. vinifera,defense_signaling,XP_059596412.1,cellulose synthase A catalytic subunit 8 [UDP-forming],0.93727624,False,0.44592646,0.86666954,0.74352604,0.93727624,1.0177468,0.6281007
+V. vinifera,defense_signaling,XP_010661507.1,serine/threonine-protein kinase ATG1a,0.9327575,True,0.4334682,0.5301605,0.7797296,0.9327575,0.65582734,0.3345524
+V. vinifera,defense_signaling,XP_059596446.1,probable AMP deaminase isoform X1,0.93190074,False,0.33943942,0.6714363,0.6184035,0.93190074,0.79077643,0.35654432
+V. vinifera,antimicrobial,XP_010662075.1,phenylalanine ammonia-lyase,1.5883324,True,0.08195197,0.8629092,0.28173363,0.3336606,1.5883324,0.92514503
+V. vinifera,antimicrobial,XP_003633986.1,phenylalanine ammonia-lyase-like,1.5836098,True,0.07376797,0.8573025,0.26889145,0.32417962,1.5836098,0.9389743
+V. vinifera,antimicrobial,XP_010658395.1,phenylalanine ammonia-lyase G1,1.5722983,True,0.077865176,0.9081137,0.30306602,0.37076706,1.5722983,0.9985041
+V. vinifera,antimicrobial,XP_010655919.1,stilbene synthase 2-like,1.5595688,True,0.3210508,0.77594024,0.27189073,0.17268026,1.5595688,0.7715585
+V. vinifera,antimicrobial,XP_003634066.1,stilbene synthase 1,1.5376173,True,0.19894697,0.67786497,0.10748397,-0.05644688,1.5376173,0.9151851
+V. vinifera,antimicrobial,XP_002276642.1,type III polyketide synthase A,1.5087243,False,0.19381082,0.72678876,0.183143,0.074853,1.5087243,0.81182826
+V. vinifera,cell_death_HR,XP_010648473.1,protein arginine N-methyltransferase 1.5 isoform X1,1.7848115,False,0.19338378,0.81904286,0.034972332,-0.022266798,0.9233987,1.7848115
+V. vinifera,cell_death_HR,XP_002277529.1,respiratory burst oxidase homolog protein A,1.75911,True,0.07396326,0.5671389,-0.13461816,-0.2030693,0.50738937,1.75911
+V. vinifera,cell_death_HR,XP_002277540.1,respiratory burst oxidase homolog protein E isoform X1,1.7465764,True,0.5966495,0.76512915,0.3255495,0.17244557,0.75718725,1.7465764
+V. vinifera,cell_death_HR,XP_002284689.2,putative clathrin assembly protein At2g01600 isoform X2,1.7036092,False,0.20108606,0.9226427,0.21565157,0.3261459,0.69272846,1.7036092
+V. vinifera,cell_death_HR,XP_059596691.1,putative clathrin assembly protein At5g35200,1.6754223,False,0.14034662,0.95397735,0.17083998,0.28626126,0.7060906,1.6754223
+V. vinifera,cell_death_HR,XP_002274553.3,probable bifunctional methylthioribulose-1-phosphate dehydratase/enolase-phosphatase E1 2 isoform X1,1.655356,False,0.69025385,0.9963626,0.38815755,0.30105713,1.0834417,1.655356
+O. sativa,NBS_LRR,XP_025883396.1,disease resistance protein RPM1-like,2.4428818,True,2.4428818,-0.05747809,0.88286155,-0.22086228,-0.0030855155,0.17842175
+O. sativa,NBS_LRR,XP_015612905.1,disease resistance protein RPM1,2.4405687,True,2.4405687,0.02361295,0.8897695,-0.44864765,0.043060444,0.3045893
+O. sativa,NBS_LRR,XP_025880879.1,disease resistance protein RPM1-like isoform X1,2.4328854,True,2.4328854,0.17205113,1.0439732,-0.12819593,0.17881662,0.3557735
+O. sativa,NBS_LRR,XP_015638539.1,putative disease resistance protein RGA3,2.4278698,True,2.4278698,0.34119397,1.0432787,-0.054638922,0.25254986,0.37585846
+O. sativa,NBS_LRR,XP_015651201.1,disease resistance protein RPM1 isoform X2,2.4152322,True,2.4152322,0.16972624,1.0195832,-0.18271166,0.1578986,0.31885576
+O. sativa,NBS_LRR,XP_025881996.1,disease resistance protein PIK6-NP-like,2.4120347,True,2.4120347,0.11478203,0.8479833,-0.26178798,0.08010291,0.52701503
+O. sativa,PR_proteins,XP_015636326.1,chitinase 5,2.3635223,True,-0.018972933,2.3635223,0.080502726,0.003750874,0.7702114,1.0496609
+O. sativa,PR_proteins,XP_015645921.1,pathogenesis-related protein 1,1.8637408,True,0.04376624,1.8637408,0.22459918,-0.42520875,0.40872416,0.8814656
+O. sativa,PR_proteins,XP_015622443.1,"glucan endo-1,3-beta-glucosidase GII",1.8401505,False,0.17094351,1.8401505,0.38993514,-0.3687884,0.7471588,1.1050668
+O. sativa,PR_proteins,XP_015614021.1,expansin-B2,1.8264902,False,0.23347737,1.8264902,0.49795818,0.22063212,1.1826756,1.3077204
+O. sativa,PR_proteins,XP_015640288.1,"glucan endo-1,3-beta-glucosidase, acidic isoform",1.819228,False,0.14973682,1.819228,0.57714945,0.027737664,0.9527225,0.9137744
+O. sativa,PR_proteins,XP_015621029.1,"glucan endo-1,3-beta-glucosidase 14 isoform X2",1.8072118,False,0.3892432,1.8072118,0.66628283,0.05499553,1.0292857,1.1632383
+O. sativa,RLK_defense,XP_015621261.1,protein NSP-INTERACTING KINASE 3,2.0149617,True,1.5468389,0.84903175,2.0149617,0.59439033,0.6496386,0.62977415
+O. sativa,RLK_defense,XP_015625590.1,LRR receptor kinase SERL2-like,2.0017512,True,1.5387732,0.74337864,2.0017512,0.54664695,0.5804286,0.5573896
+O. sativa,RLK_defense,XP_015626223.1,probable LRR receptor-like serine/threonine-protein kinase At5g45780,1.9989985,True,1.5532603,0.7901535,1.9989985,0.57684845,0.62845683,0.5848948
+O. sativa,RLK_defense,XP_015630326.1,LRR receptor kinase SERK2-like isoform X1,1.9888136,True,1.4891286,0.8675264,1.9888136,0.5036756,0.60799634,0.56561553
+O. sativa,RLK_defense,XP_015640356.1,probably inactive leucine-rich repeat receptor-like protein kinase At5g48380,1.9822665,True,1.5941437,0.76128817,1.9822665,0.53097564,0.6242918,0.5584061
+O. sativa,RLK_defense,XP_015631115.1,LRR receptor-like serine/threonine-protein kinase FEI 1 isoform X2,1.9787569,True,1.7130549,0.56576514,1.9787569,0.306249,0.42481115,0.4827711
+O. sativa,defense_signaling,XP_015627965.1,serine/threonine-protein kinase ATG1a,1.2391225,True,0.9242425,0.6952123,1.1070899,1.2391225,0.86618644,0.50281876
+O. sativa,defense_signaling,XP_015646432.1,calmodulin-binding transcription activator CBT-like isoform X2,1.2248938,False,0.45362332,0.6216045,0.83092093,1.2248938,0.7580941,0.28964517
+O. sativa,defense_signaling,XP_015647364.1,serine/threonine-protein kinase/endoribonuclease IRE1 isoform X1,1.2238985,True,0.7715963,0.714381,1.042082,1.2238985,0.813451,0.56337994
+O. sativa,defense_signaling,XP_015624635.1,protein MICRORCHIDIA 7 isoform X3,1.1979569,False,0.7216471,0.9536626,0.7887437,1.1979569,1.0094732,0.7735154
+O. sativa,defense_signaling,XP_015649561.1,calmodulin-binding transcription activator 4 isoform X2,1.1903936,False,0.5309441,0.67291945,0.7670103,1.1903936,0.83155864,0.4602495
+O. sativa,defense_signaling,XP_015630199.1,serine/threonine-protein kinase ATG1c isoform X1,1.1860024,True,0.6185709,0.7017029,0.9379814,1.1860024,0.8272894,0.6723985
+O. sativa,antimicrobial,XP_015625120.1,phenylalanine ammonia-lyase,2.0112872,True,0.10163551,1.1142877,0.3528402,0.32957444,2.0112872,1.0316641
+O. sativa,antimicrobial,XP_015635507.1,phenylalanine ammonia-lyase-like,1.9951285,True,0.08262615,1.0837384,0.3288834,0.3231036,1.9951285,1.017944
+O. sativa,antimicrobial,XP_025876683.1,chalcone synthase 8,1.9141105,False,0.54681724,1.017323,0.33876145,0.008287908,1.9141105,1.132374
+O. sativa,antimicrobial,XP_015638862.1,bisdemethoxycurcumin synthase-like,1.8802936,False,0.3955736,0.9101008,0.14420772,-0.19934097,1.8802936,1.1042691
+O. sativa,antimicrobial,XP_015646301.1,type III polyketide synthase B,1.8697637,False,0.34530142,1.0005088,0.34371564,0.095851526,1.8697637,1.0111154
+O. sativa,antimicrobial,XP_015614404.2,type III polyketide synthase A,1.861616,False,0.5380312,0.9725265,0.6230436,0.5925733,1.861616,0.75367206
+O. sativa,cell_death_HR,XP_015628086.1,protein LOL3,2.0867074,False,-0.9442918,-0.07640467,-1.426842,-1.5239668,-0.83701813,2.0867074
+O. sativa,cell_death_HR,XP_015617582.1,putative respiratory burst oxidase homolog protein H,2.0299478,True,0.42754176,0.92662936,0.016496005,-0.41268045,0.89621603,2.0299478
+O. sativa,cell_death_HR,XP_015639819.1,respiratory burst oxidase homolog protein A,1.9986978,True,0.2021202,0.8483909,-0.16777006,-0.31316233,0.7513727,1.9986978
+O. sativa,cell_death_HR,XP_015627032.1,protein arginine N-methyltransferase 5,1.9850181,False,0.049636293,0.9448506,-0.20227243,-0.37881395,1.127164,1.9850181
+O. sativa,cell_death_HR,XP_015625917.1,tripeptidyl-peptidase 2,1.9677298,False,0.46686366,1.1083144,0.1661181,-0.09181374,1.232744,1.9677298
+O. sativa,cell_death_HR,XP_015611910.1,"alpha,alpha-trehalose-phosphate synthase [UDP-forming] 6",1.9159392,False,0.8451202,0.9488334,0.33317512,0.062427577,1.170936,1.9159392

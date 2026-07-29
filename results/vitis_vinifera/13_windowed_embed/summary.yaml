@@ -1,0 +1,14 @@
+species: vitis_vinifera
+window: 1022
+stride: 511
+esm_model: esm2_t33_650M_UR50D
+n_proteome_total: 40632
+n_proteome_truncated: 3437
+frac_proteome_truncated: 0.0846
+n_proteome_windows: 7932
+n_anchors_total: 33
+n_anchors_truncated: 6
+n_anchor_windows: 12
+truncated_length_max: 5487
+truncated_length_median: 1284.0
+smoke_test: false

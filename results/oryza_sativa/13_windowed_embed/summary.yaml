@@ -1,0 +1,14 @@
+species: oryza_sativa
+window: 1022
+stride: 511
+esm_model: esm2_t33_650M_UR50D
+n_proteome_total: 42575
+n_proteome_truncated: 2244
+frac_proteome_truncated: 0.0527
+n_proteome_windows: 5321
+n_anchors_total: 33
+n_anchors_truncated: 6
+n_anchor_windows: 12
+truncated_length_max: 5490
+truncated_length_median: 1229.0
+smoke_test: false

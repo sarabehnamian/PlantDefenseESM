@@ -1,0 +1,73 @@
+protein_id,pid,z_max,best_category,has_defense_keyword,description,score_jackhmmer,length,truncated_by_esm,low_complexity_frac,repeat_frac_k6
+NP_199919.1,NP_199919,1.8429677,cell_death_HR,True,NP_199919.1 NADPH/respiratory burst oxidase protein D [Arabidopsis thaliana],0.0,905,False,0.1685,0.0
+NP_199602.1,NP_199602,1.8003199,cell_death_HR,True,NP_199602.1 respiratory burst oxidase homologue D [Arabidopsis thaliana],0.0,921,False,0.2967,0.0
+NP_196356.1,NP_196356,1.7636644,cell_death_HR,True,NP_196356.1 respiratory burst oxidase homolog A [Arabidopsis thaliana],0.0,902,False,0.2022,0.0
+NP_001319042.1,NP_001319042,1.6799829,cell_death_HR,False,NP_001319042.1 Riboflavin synthase-like superfamily protein [Arabidopsis thaliana],0.0,952,False,0.2872,0.0
+NP_173357.1,NP_173357,1.6764288,cell_death_HR,False,NP_173357.1 Riboflavin synthase-like superfamily protein [Arabidopsis thaliana],0.0,926,False,0.3297,0.0
+NP_973799.1,NP_973799,1.6280717,cell_death_HR,True,NP_973799.1 respiratory burst oxidase-like protein [Arabidopsis thaliana],0.0,843,False,0.2289,0.0
+NP_187123.1,NP_187123,1.620861,PR_proteins,True,NP_187123.1 pathogenesis-related 4 [Arabidopsis thaliana],80.45662689208984,212,False,0.25,0.0
+NP_200809.4,NP_200809,1.5705433,cell_death_HR,False,NP_200809.4 ferric reductase-like transmembrane component family protein [Arabidopsis thaliana],0.0,886,False,0.2529,0.0045
+NP_197797.1,NP_197797,1.5621716,PR_proteins,True,NP_197797.1 chitinase A [Arabidopsis thaliana],0.0,302,False,0.0345,0.0
+NP_192124.1,NP_192124,1.526735,cell_death_HR,False,NP_192124.1 ARM repeat superfamily protein [Arabidopsis thaliana],0.0,531,False,0.2692,0.0
+NP_001328443.1,NP_001328443,1.5095751,PR_proteins,True,NP_001328443.1 Barwin-related endoglucanase [Arabidopsis thaliana],0.0,126,False,0.2727,0.0
+NP_187788.1,NP_187788,1.5086999,cell_death_HR,False,NP_187788.1 syntaxin of plants 121 [Arabidopsis thaliana],0.0,346,False,0.4545,0.0147
+NP_001320090.1,NP_001320090,1.4781245,PR_proteins,True,NP_001320090.1 Barwin-related endoglucanase [Arabidopsis thaliana],0.0,124,False,0.1818,0.0
+NP_197655.1,NP_197655,1.4774201,cell_death_HR,False,NP_197655.1 arogenate dehydratase 5 [Arabidopsis thaliana],0.0,425,False,0.2439,0.0
+NP_564497.1,NP_564497,1.4607623,PR_proteins,False,NP_564497.1 Granulin repeat cysteine protease family protein [Arabidopsis thaliana],0.0,462,False,0.1778,0.0
+NP_190058.1,NP_190058,1.4551854,cell_death_HR,False,NP_190058.1 arogenate dehydratase 4 [Arabidopsis thaliana],0.0,424,False,0.2195,0.0
+NP_195870.1,NP_195870,1.4539064,cell_death_HR,False,NP_195870.1 heat shock cognate protein 70-1 [Arabidopsis thaliana],0.0,651,False,0.2188,0.0
+NP_001318171.1,NP_001318171,1.451433,cell_death_HR,False,NP_001318171.1 phosphatidic acid phosphatase 1 [Arabidopsis thaliana],0.0,327,False,0.1613,0.0
+NP_001323950.1,NP_001323950,1.451433,cell_death_HR,False,NP_001323950.1 phosphatidic acid phosphatase 1 [Arabidopsis thaliana],0.0,327,False,0.1613,0.0
+NP_565255.1,NP_565255,1.4514314,cell_death_HR,False,NP_565255.1 phosphatidic acid phosphatase 1 [Arabidopsis thaliana],0.0,327,False,0.1613,0.0
+NP_190808.1,NP_190808,1.4392934,cell_death_HR,False,NP_190808.1 syntaxin of plants 122 [Arabidopsis thaliana],0.0,341,False,0.3636,0.0
+NP_172383.3,NP_172383,1.4318807,cell_death_HR,True,NP_172383.3 respiratory burst oxidase-like protein [Arabidopsis thaliana],0.0,622,False,0.2623,0.0
+NP_188048.1,NP_188048,1.4289534,PR_proteins,False,NP_188048.1 pectin methylesterase 3 [Arabidopsis thaliana],0.0,592,False,0.2931,0.0
+NP_974288.1,NP_974288,1.4193952,cell_death_HR,False,NP_974288.1 syntaxin of plants 121 [Arabidopsis thaliana],0.0,315,False,0.4333,0.0161
+NP_001319672.1,NP_001319672,1.3971161,antimicrobial,True,NP_001319672.1 Methylenetetrahydrofolate reductase family protein [Arabidopsis thaliana],0.0,499,False,0.25,0.0
+NP_189701.3,NP_189701,1.3971144,antimicrobial,True,NP_189701.3 Methylenetetrahydrofolate reductase family protein [Arabidopsis thaliana],0.0,499,False,0.25,0.0
+NP_194456.1,NP_194456,1.3875122,antimicrobial,False,NP_194456.1 Auxin-responsive GH3 family protein [Arabidopsis thaliana],0.0,612,False,0.1,0.0
+NP_172362.3,NP_172362,1.3838675,PR_proteins,False,NP_172362.3 Calcium-dependent phospholipid-binding Copine family protein [Arabidopsis thaliana],0.0,584,False,0.1228,0.0
+NP_001032132.1,NP_001032132,1.3782294,cell_death_HR,False,NP_001032132.1 Copine (Calcium-dependent phospholipid-binding protein) family [Arabidopsis thaliana],0.0,367,False,0.0571,0.0
+NP_201202.2,NP_201202,1.3782294,cell_death_HR,False,NP_201202.2 Copine (Calcium-dependent phospholipid-binding protein) family [Arabidopsis thaliana],0.0,367,False,0.0571,0.0
+NP_849558.1,NP_849558,1.3707665,antimicrobial,False,NP_849558.1 Class II aminoacyl-tRNA and biotin synthetases superfamily protein [Arabidopsis thaliana],0.0,558,False,0.2222,0.0
+NP_194847.3,NP_194847,1.3707665,antimicrobial,False,NP_194847.3 Class II aminoacyl-tRNA and biotin synthetases superfamily protein [Arabidopsis thaliana],0.0,558,False,0.2222,0.0
+NP_851233.1,NP_851233,1.3702207,antimicrobial,False,NP_851233.1 4-hydroxy-3-methylbut-2-enyl diphosphate synthase [Arabidopsis thaliana],0.0,741,False,0.1096,0.0
+NP_200868.2,NP_200868,1.3698856,antimicrobial,False,NP_200868.2 4-hydroxy-3-methylbut-2-enyl diphosphate synthase [Arabidopsis thaliana],0.0,740,False,0.137,0.0
+NP_974753.1,NP_974753,1.3688898,antimicrobial,False,NP_974753.1 sirtuin 2 [Arabidopsis thaliana],0.0,354,False,0.1176,0.0
+NP_565206.1,NP_565206,1.3629766,PR_proteins,False,NP_565206.1 Ca(2)-dependent phospholipid-binding protein (Copine) family [Arabidopsis thaliana],0.0,401,False,0.2821,0.0
+NP_566038.1,NP_566038,1.3602059,PR_proteins,False,NP_566038.1 Plant invertase/pectin methylesterase inhibitor superfamily [Arabidopsis thaliana],0.0,511,False,0.18,0.0
+NP_564001.1,NP_564001,1.3533067,antimicrobial,False,NP_564001.1 molybdenum cofactor sulfurase (LOS5) (ABA3) [Arabidopsis thaliana],0.0,819,False,0.125,0.0
+NP_849979.1,NP_849979,1.3470938,PR_proteins,False,NP_849979.1 plant natriuretic peptide A [Arabidopsis thaliana],0.0,130,False,0.25,0.0
+NP_568180.1,NP_568180,1.3468505,PR_proteins,False,NP_568180.1 Calcium-dependent phospholipid-binding Copine family protein [Arabidopsis thaliana],0.0,586,False,0.1404,0.0
+NP_001030614.1,NP_001030614,1.345342,antimicrobial,False,NP_001030614.1 Phosphoglycerate mutase-like family protein [Arabidopsis thaliana],0.0,1050,True,0.1635,0.0
+NP_568944.1,NP_568944,1.3386017,PR_proteins,False,NP_568944.1 Calcium-dependent phospholipid-binding Copine family protein [Arabidopsis thaliana],0.0,578,False,0.2321,0.0
+NP_974977.1,NP_974977,1.3386017,PR_proteins,False,NP_974977.1 Calcium-dependent phospholipid-binding Copine family protein [Arabidopsis thaliana],0.0,578,False,0.2321,0.0
+NP_567215.1,NP_567215,1.3090022,PR_proteins,False,NP_567215.1 Cysteine proteinases superfamily protein [Arabidopsis thaliana],0.0,359,False,0.1176,0.0
+NP_849281.1,NP_849281,1.3015431,PR_proteins,False,NP_849281.1 Cysteine proteinases superfamily protein [Arabidopsis thaliana],0.0,359,False,0.1176,0.0
+NP_568651.1,NP_568651,1.298111,PR_proteins,False,NP_568651.1 senescence-associated gene 12 [Arabidopsis thaliana],0.0,346,False,0.1212,0.0
+NP_195351.2,NP_195351,1.1921705,antimicrobial,True,"NP_195351.2 Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase family protein [Arabidopsis thaliana]",0.0,626,False,0.2459,0.0
+NP_568000.1,NP_568000,1.1474031,antimicrobial,False,NP_568000.1 compromized recognition of TCV 1 [Arabidopsis thaliana],0.0,635,False,0.2581,0.0
+NP_194227.2,NP_194227,1.1034396,antimicrobial,True,"NP_194227.2 Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase family protein [Arabidopsis thaliana]",0.0,707,False,0.2464,0.0028
+NP_001190382.1,NP_001190382,1.0888777,defense_signaling,False,NP_001190382.1 inositol requiring 1-1 [Arabidopsis thaliana],147.18955993652344,887,False,0.2184,0.0
+NP_196817.2,NP_196817,1.0784602,antimicrobial,True,"NP_196817.2 Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase family protein [Arabidopsis thaliana]",0.0,708,False,0.1884,0.0
+NP_001190383.1,NP_001190383,1.0773566,defense_signaling,False,NP_001190383.1 inositol requiring 1-1 [Arabidopsis thaliana],147.31698608398438,867,False,0.2235,0.0
+NP_568444.1,NP_568444,1.0759085,defense_signaling,False,NP_568444.1 inositol requiring 1-1 [Arabidopsis thaliana],147.20748901367188,881,False,0.1839,0.0
+NP_195165.2,NP_195165,1.0744567,NBS_LRR,False,NP_195165.2 extra-large GTP-binding protein 2 [Arabidopsis thaliana],0.0,861,False,0.1647,0.0023
+NP_565419.1,NP_565419,1.0672251,defense_signaling,True,NP_565419.1 Endoribonuclease/protein kinase IRE1-like protein [Arabidopsis thaliana],162.92626953125,841,False,0.1928,0.0
+NP_171612.1,NP_171612,1.0487934,defense_signaling,False,NP_171612.1 dicer-like 1 [Arabidopsis thaliana],0.0,1909,True,0.2328,0.0
+NP_197042.2,NP_197042,1.0458745,PR_proteins,False,NP_197042.2 domains rearranged methylase 1 [Arabidopsis thaliana],0.0,624,False,0.1967,0.0
+NP_173344.2,NP_173344,1.0338335,defense_signaling,True,"NP_173344.2 Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase family protein [Arabidopsis thaliana]",0.0,663,False,0.2154,0.0
+NP_001190300.1,NP_001190300,1.0315843,defense_signaling,True,"NP_001190300.1 Histidine kinase-, DNA gyrase B-, and HSP90-like ATPase family protein [Arabidopsis thaliana]",0.0,696,False,0.1765,0.0
+NP_850023.1,NP_850023,1.0256438,defense_signaling,False,NP_850023.1 signal responsive 1 [Arabidopsis thaliana],28.14794158935547,1032,True,0.2353,0.0
+NP_001118361.1,NP_001118361,1.0256438,defense_signaling,False,NP_001118361.1 signal responsive 1 [Arabidopsis thaliana],28.14794158935547,1032,True,0.2353,0.0
+NP_001326316.1,NP_001326316,1.0162927,antimicrobial,False,NP_001326316.1 protein FLOWERING locus D-like protein [Arabidopsis thaliana],0.0,789,False,0.3377,0.0
+NP_187650.4,NP_187650,1.0116462,defense_signaling,False,NP_187650.4 protein FLOWERING locus D-like protein [Arabidopsis thaliana],0.0,884,False,0.3908,0.0
+NP_196966.2,NP_196966,1.0043812,antimicrobial,False,NP_196966.2 domains rearranged methyltransferase 2 [Arabidopsis thaliana],0.0,626,False,0.1475,0.0
+NP_178183.2,NP_178183,0.99656016,defense_signaling,True,NP_178183.2 SUPPRESSOR OF AUXIN RESISTANCE 3 [Arabidopsis thaliana],0.0,1046,True,0.165,0.0
+NP_195350.5,NP_195350,0.9921267,antimicrobial,False,NP_195350.5 ATP binding protein [Arabidopsis thaliana],0.0,486,False,0.1489,0.0499
+NP_001190866.1,NP_001190866,0.9866274,defense_signaling,False,NP_001190866.1 PATATIN-like protein 8 [Arabidopsis thaliana],0.0,526,False,0.3333,0.0077
+NP_194709.2,NP_194709,0.9829821,defense_signaling,False,NP_194709.2 PATATIN-like protein 8 [Arabidopsis thaliana],0.0,525,False,0.3333,0.0077
+NP_192008.3,NP_192008,0.97575766,defense_signaling,False,NP_192008.3 Transcription factor jumonji (jmjC) domain-containing protein [Arabidopsis thaliana],0.0,840,False,0.2289,0.0
+NP_850176.1,NP_850176,0.96610254,defense_signaling,False,NP_850176.1 RAP [Arabidopsis thaliana],0.0,671,False,0.3485,0.003
+NP_195462.3,NP_195462,0.9634841,defense_signaling,False,NP_195462.3 Tetratricopeptide repeat (TPR)-like superfamily protein [Arabidopsis thaliana],0.0,1052,True,0.25,0.0
+NP_196633.2,NP_196633,0.9623768,defense_signaling,True,NP_196633.2 histidine kinase 5 [Arabidopsis thaliana],0.0,922,False,0.2418,0.0

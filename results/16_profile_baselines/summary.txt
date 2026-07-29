@@ -1,0 +1,84 @@
+==========================================================================
+Profile-based and filter-off homology baselines  (Editor E4, E5, E6)
+Arms requested: blastp_fwd, blastp_nofilter, psiblast, jackhmmer, phmmer_nofilter
+==========================================================================
+
+Binaries on PATH:
+  makeblastdb  NO
+  blastp       NO
+  psiblast     NO
+  jackhmmer    NO
+  phmmer       NO
+  pyhmmer      yes (will substitute for jackhmmer)
+
+==========================================================================
+### Arabidopsis thaliana  (taxid 3702)
+==========================================================================
+  querying UniProt: (organism_id:3702) AND (go:0006952 OR go:0002376)
+  curated positives mapped: 2,318 / 48,207 (4.81%)
+  proteome FASTA: results\arabidopsis_thaliana\00_download_proteome\proteome.fasta
+  anchor   FASTA: results\arabidopsis_thaliana\01_fetch_anchors\anchors.fasta
+
+  ESM-2 (moderate)       N=  2807  P=0.172  R=0.208  F1=0.188  AUPRC=0.150
+
+  [blastp_fwd]
+    [SKIP] blastp/makeblastdb not on PATH
+    -> arm unavailable, skipped
+
+  [blastp_nofilter]
+    [SKIP] blastp/makeblastdb not on PATH
+    -> arm unavailable, skipped
+
+  [psiblast]
+    [SKIP] psiblast/makeblastdb not on PATH
+    -> arm unavailable, skipped
+
+  [jackhmmer]
+    [SKIP] jackhmmer not on PATH
+    running pyhmmer jackhmmer, 3 iterations, 33 anchors ...
+      10/33 anchors done (3,381 proteins hit so far)
+      20/33 anchors done (3,827 proteins hit so far)
+      30/33 anchors done (4,161 proteins hit so far)
+    cached scores -> scores_arabidopsis_thaliana_jackhmmer.csv
+    jackhmmer              N=  2807  P=0.248  R=0.301  F1=0.272  AUPRC=0.183  hits=4,218
+
+  [phmmer_nofilter]
+    [SKIP] phmmer not on PATH
+    -> arm unavailable, skipped
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR002182)
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR000726 OR xref:interpro-IPR000490 OR xref:interpro-IPR001938 OR xref:interpro-IPR014044)
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR001611 AND xref:interpro-IPR000719)
+
+  InterPro-domain        N=   591  P=0.564  R=0.144  F1=0.229
+
+  union of 1 homology arm(s) [jackhmmer]: 2,807 proteins
+  [CAUTION] these arms did NOT contribute: blastp_fwd, blastp_nofilter, psiblast, phmmer_nofilter. The ESM-2-only count below is an UPPER BOUND and must not be quoted until every requested arm has run.
+
+                    cell    n  pct_of_curated
+  Recovered by all three  283            12.2
+ ESM-2 and homology only  123             5.3
+   ESM-2 and domain only    4             0.2
+Homology and domain only   41             1.8
+              ESM-2 only   72             3.1
+           Homology only  250            10.8
+             Domain only    5             0.2
+     Missed by all three 1540            66.4
+
+  ESM-2-only among curated positives, against the FULL homology panel: 72
+  (12_benchmark_baselines.py reported 70 against single-sequence alignment + domain alone)
+
+  computing sequence features for 1,643 residual candidates ...
+  residual curated positives : 72 -> residual_curated_arabidopsis_thaliana.csv
+  residual moderate candidates: 1,643 -> residual_candidates_arabidopsis_thaliana.csv
+
+  Residual curated positives by ESM-2 category:
+    cell_death_HR            20
+    PR_proteins              17
+    antimicrobial            17
+    defense_signaling        17
+    NBS_LRR                   1
+  median length 617 aa (all candidates: 542 aa)
+  truncated by ESM-2: 6 / 72
+  mean low-complexity fraction 0.218 (all candidates: 0.210)
+  mean repeat fraction 0.002 (all candidates: 0.001)
+  per-protein arm scores -> arm_scores_arabidopsis_thaliana.csv.gz

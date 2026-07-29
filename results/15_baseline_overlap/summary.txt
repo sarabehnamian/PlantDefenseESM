@@ -1,0 +1,53 @@
+========================================================================
+Method overlap among curated defense proteins  (Reviewer 1, comment 6)
+ESM-2 (moderate)  |  alignment-to-anchor (matched-N)  |  InterPro domain
+========================================================================
+
+### Arabidopsis thaliana  (taxid 3702)
+  querying UniProt: (organism_id:3702) AND (go:0006952 OR go:0002376)
+  curated positives mapped: 2,318 / 48,207
+  proteome FASTA: results\arabidopsis_thaliana\00_download_proteome\proteome.fasta
+  anchor   FASTA: results\arabidopsis_thaliana\01_fetch_anchors\anchors.fasta
+  [ALIGN] 33 anchors loaded; aligning seeded proteins (BLOSUM62 local, k=5)
+    aligned 2,000 seeded proteins (16,269 scanned) ...
+    aligned 4,000 seeded proteins (30,327 scanned) ...
+  [ALIGN] scanned 48,207 proteins; aligned 5,885 (rest scored 0 = no seed match)
+  [ALIGN] cached scores -> homology_scores_arabidopsis_thaliana.csv
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR002182)
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR000726 OR xref:interpro-IPR000490 OR xref:interpro-IPR001938 OR xref:interpro-IPR014044)
+  querying UniProt: (organism_id:3702) AND (xref:interpro-IPR001611 AND xref:interpro-IPR000719)
+  method sets: ESM-2 N=2,807  alignment-to-anchor (SW) N=2,807  domain N=591
+
+                          cell    n  pct_of_curated
+Recovered by all three methods  264            11.4
+      ESM-2 and alignment only  125             5.4
+         ESM-2 and domain only   23             1.0
+     Alignment and domain only   40             1.7
+                    ESM-2 only   70             3.0
+                Alignment only  245            10.6
+                   Domain only    6             0.3
+   Missed by all three methods 1545            66.7
+
+                             quantity    n
+ Curated defense proteins in proteome 2318
+           Recovered by ESM-2 (total)  482
+       Recovered by alignment (total)  674
+Recovered by domain retrieval (total)  333
+      ESM-2 and alignment (inclusive)  389
+         ESM-2 and domain (inclusive)  287
+     Alignment and domain (inclusive)  304
+     Recovered by at least one method  773
+
+  check: cells sum to 2,318 (curated positives = 2,318) -> OK
+  check: ESM-2 only = 70 vs 70 stated in the manuscript -> OK
+  check: ESM-2 only = 70 vs 70 from 12_benchmark_baselines.py -> OK
+
+### Oryza sativa Japonica Group  (taxid 39947)
+  querying UniProt: (organism_id:39947) AND (go:0006952 OR go:0002376)
+  curated positives mapped: 17 / 42,575
+  [SKIP] fewer than 50 curated positives; an overlap breakdown would not be interpretable here.
+
+### Vitis vinifera  (taxid 29760)
+  querying UniProt: (organism_id:29760) AND (go:0006952 OR go:0002376)
+  curated positives mapped: 19 / 40,632
+  [SKIP] fewer than 50 curated positives; an overlap breakdown would not be interpretable here.

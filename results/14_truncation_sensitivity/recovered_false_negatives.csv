@@ -1,0 +1,9 @@
+species,family,n_curated_in_proteome,n_missed_baseline_moderate,n_missed_and_long,recovered_by_windowed_mean,recovered_by_windowed_mean_long,newly_lost_windowed_mean,recovered_by_windowed_max,recovered_by_windowed_max_long,newly_lost_windowed_max
+Arabidopsis thaliana,NLR (NB-ARC),254,32,11,1,1,13,2,2,14
+Arabidopsis thaliana,PR proteins,91,22,0,0,0,0,0,0,0
+Arabidopsis thaliana,RLK (LRR receptor kinase),246,67,13,5,5,5,7,7,5
+Oryza sativa Japonica Group,NLR (NB-ARC),1,0,0,0,0,0,0,0,0
+Oryza sativa Japonica Group,PR proteins,3,0,0,0,0,0,0,0,0
+Oryza sativa Japonica Group,RLK (LRR receptor kinase),3,3,1,1,1,0,1,1,0
+Vitis vinifera,PR proteins,8,1,0,0,0,0,0,0,0
+Vitis vinifera,RLK (LRR receptor kinase),1,1,1,0,0,0,1,1,0

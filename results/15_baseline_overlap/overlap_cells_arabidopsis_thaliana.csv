@@ -1,0 +1,9 @@
+cell,n,pct_of_curated
+Recovered by all three methods,264,11.4
+ESM-2 and alignment only,125,5.4
+ESM-2 and domain only,23,1.0
+Alignment and domain only,40,1.7
+ESM-2 only,70,3.0
+Alignment only,245,10.6
+Domain only,6,0.3
+Missed by all three methods,1545,66.7

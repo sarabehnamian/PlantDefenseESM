@@ -1,0 +1,19 @@
+species,category,cosine_base_vs_windowed,n_anchors_windowed
+Arabidopsis thaliana,NBS_LRR,0.99972,4
+Arabidopsis thaliana,PR_proteins,1.0,0
+Arabidopsis thaliana,RLK_defense,0.99997,2
+Arabidopsis thaliana,antimicrobial,1.0,0
+Arabidopsis thaliana,cell_death_HR,1.0,0
+Arabidopsis thaliana,defense_signaling,1.0,0
+Oryza sativa Japonica Group,NBS_LRR,0.99972,4
+Oryza sativa Japonica Group,PR_proteins,1.0,0
+Oryza sativa Japonica Group,RLK_defense,0.99997,2
+Oryza sativa Japonica Group,antimicrobial,1.0,0
+Oryza sativa Japonica Group,cell_death_HR,1.0,0
+Oryza sativa Japonica Group,defense_signaling,1.0,0
+Vitis vinifera,NBS_LRR,0.99972,4
+Vitis vinifera,PR_proteins,1.0,0
+Vitis vinifera,RLK_defense,0.99997,2
+Vitis vinifera,antimicrobial,1.0,0
+Vitis vinifera,cell_death_HR,1.0,0
+Vitis vinifera,defense_signaling,1.0,0

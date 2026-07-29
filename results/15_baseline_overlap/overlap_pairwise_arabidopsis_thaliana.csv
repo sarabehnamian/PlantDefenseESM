@@ -1,0 +1,9 @@
+quantity,n
+Curated defense proteins in proteome,2318
+Recovered by ESM-2 (total),482
+Recovered by alignment (total),674
+Recovered by domain retrieval (total),333
+ESM-2 and alignment (inclusive),389
+ESM-2 and domain (inclusive),287
+Alignment and domain (inclusive),304
+Recovered by at least one method,773

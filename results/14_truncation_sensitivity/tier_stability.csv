@@ -1,0 +1,19 @@
+species,arm,tier,n_baseline,n_arm,jaccard,retained_frac,added,removed
+Arabidopsis thaliana,windowed_mean,strict,1443,1445,0.8656,0.9286,105,103
+Arabidopsis thaliana,windowed_mean,moderate,2807,2808,0.897,0.9458,153,152
+Arabidopsis thaliana,windowed_mean,lenient,7155,7129,0.9439,0.9694,193,219
+Arabidopsis thaliana,windowed_max,strict,1443,1434,0.8866,0.9369,82,91
+Arabidopsis thaliana,windowed_max,moderate,2807,2794,0.9096,0.9505,126,139
+Arabidopsis thaliana,windowed_max,lenient,7155,7102,0.9416,0.9663,188,241
+Oryza sativa Japonica Group,windowed_mean,strict,1272,1268,0.8622,0.9245,92,96
+Oryza sativa Japonica Group,windowed_mean,moderate,2442,2437,0.8904,0.941,139,144
+Oryza sativa Japonica Group,windowed_mean,lenient,6431,6424,0.943,0.9701,185,192
+Oryza sativa Japonica Group,windowed_max,strict,1272,1266,0.8744,0.9308,82,88
+Oryza sativa Japonica Group,windowed_max,moderate,2442,2436,0.9077,0.9505,115,121
+Oryza sativa Japonica Group,windowed_max,lenient,6431,6385,0.9383,0.9647,181,227
+Vitis vinifera,windowed_mean,strict,1210,1212,0.846,0.9174,102,100
+Vitis vinifera,windowed_mean,moderate,2354,2361,0.8905,0.9435,140,133
+Vitis vinifera,windowed_mean,lenient,6526,6542,0.9357,0.968,225,209
+Vitis vinifera,windowed_max,strict,1210,1212,0.8951,0.9455,68,66
+Vitis vinifera,windowed_max,moderate,2354,2360,0.8962,0.9465,132,126
+Vitis vinifera,windowed_max,lenient,6526,6538,0.942,0.971,201,189

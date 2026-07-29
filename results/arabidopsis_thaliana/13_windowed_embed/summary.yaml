@@ -1,0 +1,14 @@
+species: arabidopsis_thaliana
+window: 1022
+stride: 511
+esm_model: esm2_t33_650M_UR50D
+n_proteome_total: 48207
+n_proteome_truncated: 2341
+frac_proteome_truncated: 0.0486
+n_proteome_windows: 5616
+n_anchors_total: 33
+n_anchors_truncated: 6
+n_anchor_windows: 12
+truncated_length_max: 5400
+truncated_length_median: 1239.0
+smoke_test: false

@@ -1,5 +1,8 @@
 # PlantDefenseESM
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21673072.svg)](https://doi.org/10.5281/zenodo.21673072)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Computational pipeline for **prioritizing candidate plant defense proteins** using
 protein language model embeddings (ESM-2) and a curated set of defense anchor
 proteins. The pipeline takes a reference plant proteome, embeds every protein into
@@ -314,7 +317,7 @@ not the `main` branch**, which may move ahead of the published record.
 
 | Release | Manuscript version | Zenodo DOI |
 | --- | --- | --- |
-| `v1.0.0` | Revision 4, submitted to *BMC Bioinformatics* (submission ID 642bb21d-50eb-413e-8f0d-48481aa415d4) | [10.5281/zenodo.XXXXXXX](https://doi.org/10.5281/zenodo.XXXXXXX) |
+| `v1.0.0` | Revision 4, submitted to *BMC Bioinformatics* (submission ID 642bb21d-50eb-413e-8f0d-48481aa415d4) | [10.5281/zenodo.21673072](https://doi.org/10.5281/zenodo.21673072) |
 
 The release is archived on Zenodo so that the computational materials cannot
 change after publication without a record.
@@ -334,6 +337,17 @@ evidence vocabulary above.
 MIT. See `LICENSE`.
 
 ## Associated publication
+
+Please cite both the archived software release and the publication.
+
+**Software:**
+
+> Behnamian, S., & Boyouk, N. (2026). *PlantDefenseESM: a training-free pipeline
+> for proteome-wide prioritization of plant defense candidates using ESM-2
+> embeddings* (v1.0.0) [Software]. Zenodo.
+> https://doi.org/10.5281/zenodo.21673072
+
+**Publication:**
 
 > **Behnamian, S.**<sup>1,2</sup>, **& Boyouk, N.**<sup>3</sup> *Protein language
 > model embeddings are less sensitive than profile-based homology search for

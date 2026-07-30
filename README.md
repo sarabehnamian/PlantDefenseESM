@@ -1,6 +1,6 @@
 # PlantDefenseESM
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21673072.svg)](https://doi.org/10.5281/zenodo.21673072)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21673071.svg)](https://doi.org/10.5281/zenodo.21673071)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Computational pipeline for **prioritizing candidate plant defense proteins** using
@@ -356,7 +356,10 @@ not the `main` branch**, which may move ahead of the published record.
 | --- | --- | --- |
 | `v1.0.0` | Revision 4, first snapshot | [10.5281/zenodo.21673072](https://doi.org/10.5281/zenodo.21673072) |
 | `v1.0.1` | Revision 4, submitted to *BMC Bioinformatics* (submission ID 642bb21d-50eb-413e-8f0d-48481aa415d4) | [10.5281/zenodo.21679034](https://doi.org/10.5281/zenodo.21679034) |
-| `v1.0.2` | Revision 5: PSI-BLAST and low-complexity-filter-off benchmark arms (editor comments E4 and E5) | **TODO — create the release, then paste the DOI here, in the manuscript's *Availability of data and materials* section, and in the response letter** |
+| `v1.0.2` | Revision 5: PSI-BLAST and low-complexity-filter-off benchmark arms (editor comments E4 and E5) | [10.5281/zenodo.21710001](https://doi.org/10.5281/zenodo.21710001) |
+
+The concept DOI [10.5281/zenodo.21673071](https://doi.org/10.5281/zenodo.21673071)
+always resolves to the most recent release; the badge above uses it.
 
 The release is archived on Zenodo so that the computational materials cannot
 change after publication without a record.
@@ -383,8 +386,8 @@ Please cite both the archived software release and the publication.
 
 > Behnamian, S., & Boyouk, N. (2026). *PlantDefenseESM: a training-free pipeline
 > for proteome-wide prioritization of plant defense candidates using ESM-2
-> embeddings* (v1.0.0) [Software]. Zenodo.
-> https://doi.org/10.5281/zenodo.21673072
+> embeddings* (v1.0.2) [Software]. Zenodo.
+> https://doi.org/10.5281/zenodo.21710001
 
 **Publication:**
 

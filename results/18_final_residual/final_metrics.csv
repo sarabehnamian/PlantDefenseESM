@@ -1,0 +1,9 @@
+method,candidates,recovered_TP,precision,recall,F1
+ESM-2 (moderate tier),482,482,1.0,0.208,0.344
+blastp_default,2807,705,0.251,0.304,0.275
+blastp_filteroff,2807,704,0.251,0.304,0.275
+psiblast_default,2807,687,0.245,0.296,0.268
+psiblast_filteroff,2807,695,0.248,0.3,0.272
+jackhmmer,2807,0,0.0,0.0,
+alignment_SW,674,674,1.0,0.291,0.451
+interpro_domain,333,333,1.0,0.144,0.252

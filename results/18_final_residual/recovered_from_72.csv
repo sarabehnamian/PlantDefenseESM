@@ -1,0 +1,8 @@
+protein_id,recovered_by,description
+NP_001118361.1,alignment_SW,NP_001118361.1 signal responsive 1 [Arabidopsis thaliana]
+NP_001190382.1,alignment_SW,NP_001190382.1 inositol requiring 1-1 [Arabidopsis thaliana]
+NP_001190383.1,alignment_SW,NP_001190383.1 inositol requiring 1-1 [Arabidopsis thaliana]
+NP_187123.1,blastp_filteroff,NP_187123.1 pathogenesis-related 4 [Arabidopsis thaliana]
+NP_565419.1,psiblast_default,NP_565419.1 Endoribonuclease/protein kinase IRE1-like protein [Arabidopsis thaliana]
+NP_568444.1,alignment_SW,NP_568444.1 inositol requiring 1-1 [Arabidopsis thaliana]
+NP_850023.1,alignment_SW,NP_850023.1 signal responsive 1 [Arabidopsis thaliana]

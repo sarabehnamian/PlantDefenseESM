@@ -1,0 +1,6 @@
+method,candidates,recovered_TP,precision,recall,F1,AUPRC
+ESM-2 (moderate tier),2807,482,0.172,0.208,0.188,(from 09_benchmark_curated.py)
+blastp_default,2807,705,0.251,0.304,0.275,0.187
+blastp_filteroff,2807,703,0.25,0.303,0.274,0.187
+psiblast_default,2807,687,0.245,0.296,0.268,0.194
+psiblast_filteroff,2807,695,0.248,0.3,0.271,0.194

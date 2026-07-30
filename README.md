@@ -29,19 +29,28 @@ Please read this section before using the outputs.
   0.150. InterPro domain retrieval was more precise still (0.564) though the least
   sensitive (recall 0.144). **Profile-based homology search should remain the
   primary tool; pLM scoring is an adjunct to it, not a replacement.**
-- **The contribution is complementarity, not accuracy.** 72 curated defense
-  proteins were recovered by ESM-2 alone — by neither profile search nor domain
-  retrieval. They are not structurally unusual (low-complexity content, repeat
-  content and length are indistinguishable from the candidate set as a whole);
-  what distinguishes them is family membership. They come from families with no
-  representative among the 33 anchors, including respiratory burst oxidase
-  homologues, SYP121/SYP122 syntaxins, copines and IRE1-type kinases, which is why
-  an anchor-seeded homology search cannot reach them. Against the single-sequence
-  alignment baseline the equivalent figure is 70.
-- **Not benchmarked: PSI-BLAST, and sequence searches with low-complexity
-  filtering disabled.** Both arms are implemented in `16_profile_baselines.py` but
-  were not executed. The ESM-2-only counts are therefore an upper bound that a
-  wider panel of sequence-search settings could reduce.
+- **The contribution is complementarity, not accuracy.** 65 curated defense
+  proteins were recovered by ESM-2 alone — by none of the seven homology- and
+  domain-based methods benchmarked here. They are not compositionally unusual
+  (low-complexity content, repeat content and length are indistinguishable from
+  the candidate set as a whole); what distinguishes them is family membership.
+  They come from families with no representative among the 33 anchors, including
+  respiratory burst oxidase homologues, SYP121/SYP122 syntaxins, copines and
+  papain-family cysteine proteases, which is why an anchor-seeded homology search
+  cannot reach them. Measured against narrower panels the figure is higher: 72
+  against jackhmmer plus domain retrieval, and 70 against the single-sequence
+  alignment baseline plus domain retrieval.
+- **PSI-BLAST and filter-off searches have been run** (`17_psiblast_filteroff.py`,
+  BLAST+ 2.17.0). Disabling low-complexity and composition-based corrections
+  (`-seg no -comp_based_stats 0`) changed recovery by two curated proteins in
+  blastp and eight in PSI-BLAST out of roughly 700, so filter settings do not
+  account for the difference between the two approaches. PSI-BLAST (687 curated
+  proteins recovered) agreed closely with jackhmmer (697). Single-pass blastp was
+  the most sensitive arm at matched candidate count (705 recovered), although the
+  iterated profile methods ranked the proteome better overall (AUPRC 0.194 versus
+  0.187), so the sensitivity advantage of profile search is not realised with
+  this small and heterogeneous anchor panel. The ESM-2-only count is therefore a
+  measured value rather than an upper bound.
 - **Curated benchmarking was feasible only in *Arabidopsis*.** Fewer than 20
   curated defense proteins could be mapped to the rice and grapevine RefSeq
   proteomes, so application to three proteomes demonstrates computational
@@ -151,10 +160,28 @@ run from the project root and writes into a subdirectory of `results/`.
   moderate tier) and InterPro domain retrieval. Also produces the mutually
   exclusive three-method overlap and characterises the ESM-2-only residual by
   length, truncation status, low-complexity content and repeat content. The
-  PSI-BLAST arm (`-seg no`, `-comp_based_stats 0`) and the filter-off phmmer arm
-  (`--max`, `--nonull2`) are implemented here but were **not executed**; they
-  require a local BLAST+ installation.
+  PSI-BLAST and filter-off arms sketched here were superseded by
+  `17_psiblast_filteroff.py`, which runs them against a local BLAST+ install.
   `results/16_profile_baselines/`
+
+- **`17_psiblast_filteroff.py`** — the PSI-BLAST and low-complexity-filter-off
+  arms requested by the editor. Requires BLAST+ 2.17.0 or later on `PATH`. Runs
+  four searches of the 33 anchors against the proteome — blastp and PSI-BLAST
+  (three iterations, per-iteration inclusion threshold E < 0.001), each with
+  default settings and with `-seg no -comp_based_stats 0` — scores every protein
+  by its best bitscore to any anchor, matches the candidate count to the ESM-2
+  moderate tier, and evaluates each arm against the curated GO defense set.
+  Optional phmmer arms (`--max --nonull2`) via `--with-phmmer`. Note that the
+  output directory is `results/13_psiblast_filteroff/`, which predates the
+  renumbering of the script.
+  `results/13_psiblast_filteroff/{arm_metrics.csv, arm_scores.csv, recovery_matrix.csv, residual_esm_only.csv, residual_features.csv}`
+
+- **`18_final_residual.py`** — folds the arms above together with the cached
+  jackhmmer scores, the Smith–Waterman alignment set and InterPro domain
+  retrieval into a single seven-method panel, and reports the ESM-2-only residual
+  against all of them, together with the proteins that the wider panel recovers
+  and the method that recovered each one.
+  `results/18_final_residual/{final_metrics.csv, final_residual.csv, recovered_from_72.csv, summary.md}`
 
 Peer-review revision analyses live in **`analysis/`** and read the step outputs
 above (run from the project root):
@@ -199,6 +226,7 @@ pip install numpy pandas matplotlib seaborn scikit-learn biopython pyyaml openpy
 pip install torch --index-url https://download.pytorch.org/whl/cu121   # pick your CUDA/CPU build
 pip install fair-esm
 pip install pyhmmer                                                    # r2_novel_pfam_support.py and 16_profile_baselines.py
+pip install tabulate                                                   # 17_psiblast_filteroff.py summary output
 ```
 
 The exact versions used for the published results are pinned in
@@ -246,6 +274,12 @@ python 12_benchmark_baselines.py
 python 15_baseline_overlap.py
 python 16_profile_baselines.py
 
+# PSI-BLAST and filter-off arms (needs BLAST+ on PATH; see Installation).
+# The two input lists are derived from positive_membership_<species>.csv:
+#   curated_go_set.csv = every row; domain_set.csv = rows where domain == True
+python 17_psiblast_filteroff.py --species arabidopsis_thaliana --curated results\15_baseline_overlap\curated_go_set.csv --domain-set results\15_baseline_overlap\domain_set.csv --threads 8
+python 18_final_residual.py
+
 # 4) long-sequence re-embedding (per species, GPU)
 python 13_windowed_embed.py --config config_arabidopsis.yaml
 python 14_truncation_sensitivity.py
@@ -274,8 +308,8 @@ the pipeline; neither is generated by a script.
 | Table 5 (family recall) | `10_benchmark_families.py` | `results/09_benchmark_curated/families_recall.csv` |
 | Table 6 (method-overlap breakdown) | `15_baseline_overlap.py` | `results/15_baseline_overlap/overlap_table_arabidopsis_thaliana.csv` |
 | Table 7 (windowed embedding) | `13_windowed_embed.py` → `14_truncation_sensitivity.py` | `results/14_truncation_sensitivity/` |
-| Table 8 (ESM-2 vs profile search vs domain retrieval) | `16_profile_baselines.py` | `results/16_profile_baselines/` |
-| Table 9 (three-method mutually exclusive overlap; ESM-2-only residual) | `16_profile_baselines.py` | `results/16_profile_baselines/` |
+| Table 8 (ESM-2 vs homology search vs domain retrieval) | `16_profile_baselines.py` (jackhmmer) → `17_psiblast_filteroff.py` (blastp, PSI-BLAST, filter-off arms) | `results/16_profile_baselines/`, `results/13_psiblast_filteroff/arm_metrics.csv` |
+| Table 9 (three-method mutually exclusive overlap; ESM-2-only residual) | `16_profile_baselines.py`; full-panel residual from `18_final_residual.py` | `results/16_profile_baselines/`, `results/18_final_residual/summary.md` |
 | Table 10 (cross-species summary) | `07_cross_species_compare.py` | `results/07_cross_species_compare/cross_species_summary.csv` |
 | Figure 2 (Z-score distributions) | `06_multispecies_figures.py` | `results/06b_multispecies_figures/fig1_zscore_distributions.png` |
 | Figure 3 (category heatmaps) | `06_multispecies_figures.py` | `results/06b_multispecies_figures/fig2_category_heatmaps.png` |
@@ -320,7 +354,9 @@ not the `main` branch**, which may move ahead of the published record.
 
 | Release | Manuscript version | Zenodo DOI |
 | --- | --- | --- |
-| `v1.0.0` | Revision 4, submitted to *BMC Bioinformatics* (submission ID 642bb21d-50eb-413e-8f0d-48481aa415d4) | [10.5281/zenodo.21673072](https://doi.org/10.5281/zenodo.21673072) |
+| `v1.0.0` | Revision 4, first snapshot | [10.5281/zenodo.21673072](https://doi.org/10.5281/zenodo.21673072) |
+| `v1.0.1` | Revision 4, submitted to *BMC Bioinformatics* (submission ID 642bb21d-50eb-413e-8f0d-48481aa415d4) | [10.5281/zenodo.21679034](https://doi.org/10.5281/zenodo.21679034) |
+| `v1.0.2` | Revision 5: PSI-BLAST and low-complexity-filter-off benchmark arms (editor comments E4 and E5) | **TODO — create the release, then paste the DOI here, in the manuscript's *Availability of data and materials* section, and in the response letter** |
 
 The release is archived on Zenodo so that the computational materials cannot
 change after publication without a record.
@@ -384,12 +420,13 @@ profile search (jackhmmer) outperformed the embeddings on every measure: precisi
 0.248 versus 0.172, recall 0.301 versus 0.208, F1 0.272 versus 0.188 and AUPRC
 0.183 versus 0.150, while InterPro domain retrieval was more precise still
 (0.564). The embeddings are therefore less sensitive than profile-based homology
-search, not more. They did, however, recover 72 curated defense proteins that
-neither profile search nor domain retrieval identified. These were not
-structurally unusual: low-complexity content, repeat content and sequence length
-were indistinguishable from the candidate set as a whole. They belonged instead to
-families with no representative among the anchors, including respiratory burst
-oxidase homologues, SYP121/SYP122 syntaxins, copines and IRE1-type kinases.
+search, not more. They did, however, recover 65 curated defense proteins that
+no homology- or domain-based method tested identified. These were not
+compositionally unusual: low-complexity content, repeat content and sequence
+length were indistinguishable from the candidate set as a whole. They belonged
+instead to families with no representative among the anchors, including
+respiratory burst oxidase homologues, SYP121/SYP122 syntaxins, copines and
+papain-family cysteine proteases.
 
 **Conclusions.** Profile-based homology search should remain the primary tool for
 identifying defense genes in plant proteomes, and pLM embeddings should not be

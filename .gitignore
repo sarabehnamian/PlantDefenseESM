@@ -36,3 +36,10 @@ Reviewers_v*.docx
 workflow/
 
 workflow/
+
+# BLAST+ local install - do not commit
+blast.tar.gz
+ncbi-blast-2.17.0+/
+__pycache__/
+
+results/13_psiblast_filteroff/*.tsv
